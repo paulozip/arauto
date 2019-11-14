@@ -1,4 +1,3 @@
-# README
 ![](img/logo.png)
 # Project: Alchemy
 *A framework for time series experimentation*

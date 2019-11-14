@@ -48,6 +48,6 @@ At the end of the process, Alchemy will give you the source code used to make th
 ![](img/alchemy_your_code.png)
 
 # Next steps
-Currently, this is an one-person project, but help is always welcome. **You can suggest new ideas and features for us in our issue tracking. Requests will be prioritized by thumbs up emoji** (👍).
+Currently, this is an one-person project, but help is always welcome. **[You can suggest new ideas and features for us in our issue tracking](https://github.com/paulozip/alchemy/issues). Requests will be prioritized by thumbs up emoji** (👍).
 
 **If you want to collaborate with this project**, all you need to do is fork this repository, make new additions and modifications, and open a PR. I will validate it ASAP. 

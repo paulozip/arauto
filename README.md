@@ -28,7 +28,7 @@ docker-compose up --build
 
 ```bash
 # Clone the repository
-git clone [REPOSITORY URL]
+git clone https://github.com/paulozip/alchemy.git
 cd alchemy
 
 # If you're using Anaconda

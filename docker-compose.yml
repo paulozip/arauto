@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  alchemy:
+    build:
+        context: ./
+        dockerfile: Dockerfile
+    image: alchemy:latest
+    environment:
+      - DISPLAY=unix$DISPLAY
+    command: streamlit run run.py
+    container_name: alchemy_main
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - app-volume:/app
+    networks:
+      - alchemy_network
+    expose:
+      - "8501"
+    ports:
+      - "8501:8501"
+
+  alchemy_api:
+    image: alchemy:latest
+    command: python3 main.py
+    container_name: alchemy_api
+    volumes:
+      - app-volume:/app
+    networks:
+      - alchemy_network
+    expose:
+      - "5000"
+    ports:
+      - "5000:5000"
+networks:
+  alchemy_network:
+    driver: bridge
+volumes:
+     app-volume:

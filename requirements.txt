@@ -1,0 +1,10 @@
+Flask==1.0.2
+matplotlib==3.0.3
+numpy==1.16.2
+pandas==0.24.2
+plotly==4.1.0
+requests==2.21.0
+scikit-learn==0.20.3
+statsmodels==0.10.1
+streamlit==0.47.4
+tqdm==4.36.1

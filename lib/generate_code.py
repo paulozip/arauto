@@ -302,7 +302,7 @@ def generate_code(filename, ds_column, y, test_stationarity_code, test_set_size,
                 train_transformation_func = {0}
                 train_set = train_transformation_func(df.iloc[:-{1}])
                 test_set = train_transformation_func(df.iloc[-{1}:])
-                         '''.format('np.log' if transformation_function == np.log else lambda x: x, test_set_size)
+                         '''.format('np.log' if transformation_function == np.log else 'lambda x: x', test_set_size)
 
     train_model = f'''
                 # Training model

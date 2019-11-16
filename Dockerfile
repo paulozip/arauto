@@ -4,8 +4,7 @@ ADD . ${APP_ROOT}/app
 WORKDIR ${APP_ROOT}/app
 
 # Packages
-RUN apt-get update && apt-get install -y wget libfreetype6-dev 
-#pkg-config libpng-dev x11-xserver-utils
+RUN apt-get update && apt-get install -y wget libfreetype6-dev
 
 # Requirements
 COPY requirements.txt .

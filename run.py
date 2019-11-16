@@ -6,6 +6,7 @@ import streamlit as st
 import sys
 
 sys.path.insert(0, 'lib/')
+sys.tracebacklimit = 0 # Hide traceback on errors
 
 from decompose_series import decompose_series
 from file_selector import file_selector
@@ -20,11 +21,11 @@ from test_stationary import test_stationary
 from train_ts_model import train_ts_model
 from transform_time_series import transform_time_series
 
-#pd.set_option('display.float_format', lambda x: '%.3f' % x) # Granting that pandas won't use scientific notation for floating fields
+pd.set_option('display.float_format', lambda x: '%.3f' % x) # Granting that pandas won't use scientific notation for floating fields
 
 description =   '''
                 **Alchemy** is an open-source project that will help you to forecast the future from historical data. 
-                It uses statiscal models and artificial intelligence to give you accurated predictions, and it's helpful for 
+                It uses statiscal models and machine learning to give you accurated predictions, and it's helpful for 
                 financial data, network traffic, sales, and much more.
                 '''
 
@@ -109,7 +110,13 @@ if train_model:
 
     test_set = transformation_function(ts.iloc[-test_set_size:])
     
-    model = train_ts_model(train_set, p, d, q, P, D, Q, s, exog_variables=exog_train, quiet=False)
+    try:
+        model = train_ts_model(train_set, p, d, q, P, D, Q, s, exog_variables=exog_train, quiet=False)
+    except ValueError as ve:
+        if ve.args[0] == 'maxlag should be < nobs':
+            raise ValueError('Seems that you don\'t have enough data. Try to use smaller terms for AR and MA (p, q, P, Q)')
+        else:
+            raise ve
 
     st.markdown('## **Train set prediction**')
     st.write('The model was trained with this data. It\'s trying to predict the same data')

@@ -6,12 +6,9 @@ services:
         context: ./
         dockerfile: Dockerfile
     image: alchemy:latest
-    environment:
-      - DISPLAY=unix$DISPLAY
     command: streamlit run run.py
     container_name: alchemy_main
     volumes:
-      - /tmp/.X11-unix:/tmp/.X11-unix
       - app-volume:/app
     networks:
       - alchemy_network

@@ -1,4 +1,3 @@
-
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
@@ -21,7 +20,7 @@ from test_stationary import test_stationary
 from train_ts_model import train_ts_model
 from transform_time_series import transform_time_series
 
-pd.set_option('display.float_format', lambda x: '%.3f' % x) # Granting that pandas won't use scientific notation for floating fields
+#pd.set_option('display.float_format', lambda x: '%.3f' % x) # Granting that pandas won't use scientific notation for floating fields
 
 description =   '''
                 **Alchemy** is an open-source project that will help you to forecast the future from historical data. 
@@ -37,12 +36,7 @@ st.write(description)
 ### SIDEBAR
 st.sidebar.title('Your data')
 
-upload_file = st.sidebar.button('Upload file')
-
-if upload_file:
-    filename, df = file_selector()
-else:
-    filename, df = file_selector(ignore_upload=True)
+filename, df = file_selector()
 
 st.markdown('### First lines of your data')
 st.dataframe(df.head()) # First lines of DataFrame
@@ -71,7 +65,7 @@ if show_adfuller_test:
 # Show the historical plot?
 if show_absolute_plot:
     st.markdown('# Historical data ')
-    df.plot(grid=True)
+    df.plot(color='green')
     plt.title('Absolute historical data')
     st.pyplot()
 
@@ -116,7 +110,6 @@ if train_model:
     test_set = transformation_function(ts.iloc[-test_set_size:])
     
     model = train_ts_model(train_set, p, d, q, P, D, Q, s, exog_variables=exog_train, quiet=False)
-    final_model = train_ts_model(transformation_function(ts), p, d, q, P, D, Q, s, exog_variables=exog_variables, quiet=True)
 
     st.markdown('## **Train set prediction**')
     st.write('The model was trained with this data. It\'s trying to predict the same data')
@@ -140,7 +133,10 @@ if train_model:
                     Now it's a good time to grab some coffee.
                     ''')
         p, d, q, P, D, Q, s = grid_search_arima(train_set, exog_train,  range(p+3), range(q+3), range(P+3), range(Q+3), d=d, D=D, s=s)
-
+        
+    # Creating final model
+    final_model = train_ts_model(transformation_function(ts), p, d, q, P, D, Q, s, exog_variables=exog_variables, quiet=True)
+    
     # Forecasting data
     st.markdown('# Out-of-sample Forecast')
     

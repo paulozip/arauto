@@ -57,10 +57,10 @@ def find_acf_pacf(timeseries, seasonality):
             Q_terms += 1
 
     # Ploting the ACF function
-    sm.graphics.tsa.plot_acf(timeseries.dropna(), lags = seasonality * 2, ax=ax1)
+    sm.graphics.tsa.plot_acf(timeseries.dropna(), lags = seasonality * 2, ax=ax1, color='green')
     
     # Ploting the PACF function
-    sm.graphics.tsa.plot_pacf(timeseries.dropna(), lags = seasonality * 2, ax=ax2)
+    sm.graphics.tsa.plot_pacf(timeseries.dropna(), lags = seasonality * 2, ax=ax2, color='green')
     
     plt.subplots_adjust(hspace=.4)
     st.pyplot()

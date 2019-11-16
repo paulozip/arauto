@@ -31,14 +31,14 @@ def predict_set(timeseries, y, seasonality, transformation_function, model, exog
         timeseries['ŷ'] = transformation_function(model.predict())
     
     if show_train_prediction and forecast == False:
-        timeseries[[y, 'ŷ']].iloc[-(seasonality*3):].plot()
+        timeseries[[y, 'ŷ']].iloc[-(seasonality*3):].plot(color=['green', 'red'])
 
         plt.ylabel(y)
         plt.xlabel('')
         plt.title('Train set predictions')
         st.pyplot()
     elif show_test_prediction and forecast:
-        timeseries[[y, 'ŷ']].iloc[-(seasonality*3):].plot()
+        timeseries[[y, 'ŷ']].iloc[-(seasonality*3):].plot(color=['green', 'red'])
 
         plt.ylabel(y)
         plt.xlabel('')

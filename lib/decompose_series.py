@@ -17,17 +17,17 @@ def decompose_series(ts):
 
     decomposition = seasonal_decompose(ts)
 
-    decomposition.seasonal.plot(ax=ax1, title='Sazonality')
+    decomposition.seasonal.plot(color='green', ax=ax1, title='Sazonality')
     plt.legend('')
     #plt.title('Sazonality')
     #st.pyplot()
 
-    decomposition.trend.plot(ax=ax2, title='Trending')
+    decomposition.trend.plot(color='green', ax=ax2, title='Trending')
     plt.legend('')
     #plt.title('Trending')
     #st.pyplot()
     
-    decomposition.resid.plot(ax=ax3, title='Resid')
+    decomposition.resid.plot(color='green', ax=ax3, title='Resid')
     plt.legend('')
     #plt.title('Resid')
     plt.subplots_adjust(hspace=1)

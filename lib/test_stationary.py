@@ -144,7 +144,7 @@ def test_stationary(timeseries, plot_results=False, data_frequency=None):
     if plot_results:
         # Plotting rolling statistics
         fig = plt.figure(figsize=(10, 5))
-        orig = plt.plot(timeseries.iloc[-36:], color='green', label='Original')
+        orig = plt.plot(timeseries, color='green', label='Original')
         mean = plt.plot(mean, color='red', label='Mean')
         std = plt.plot(std, color='black', label='Std')
         plt.legend(loc='best')

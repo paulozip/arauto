@@ -321,7 +321,7 @@ def generate_code(filename, ds_column, y, test_stationarity_code, test_set_size,
     
     predict_set = '''
                 predict_set(df, '{}', {}, {}, mod)
-                  '''.format(y, seasonality, 'np.log' if transformation_function == np.log else lambda x: x)
+                  '''.format(y, seasonality, 'np.log' if transformation_function == np.log else 'lambda x: x')
 
     forecasting_code =  '''
                 # Forecasting out-of-sample periods

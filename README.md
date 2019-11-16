@@ -13,7 +13,6 @@ If you are just curious about what you can do with Alchemy, **[you can refer to 
 ## Docker
 Run the following commands to use Alchemy with Docker (requires **Docker and Docker-compose**):
 
-
 ```bash
 # To use the upload function, we need access to the server 
 sudo apt-get install x11-xserver-utils
@@ -40,6 +39,23 @@ pip install requirements.txt
 
 # Run Streamlit
 streamlit run run.py
+```
+# Upload your data
+A ["Upload file" support will be added to Alchemy](https://github.com/paulozip/alchemy/issues/4), but you can use the Alchemy REST API to send your dataset. Here's an example of how you can use it using cURL:
+
+```bash
+curl -X POST \
+  http://SERVER_ADDRESS:5000/upload_file \
+  -H 'content-type: multipart/form-data' \       
+  -F file=@PATH_TO_YOUR_FILE
+```
+
+Example:
+```bash
+curl -X POST \
+  http://0.0.0.0:5000/upload_file \
+  -H 'content-type: multipart/form-data' \       
+  -F file=@/home/my_user/Downloads/dataset.csv
 ```
 
 # Your data, your code

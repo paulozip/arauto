@@ -14,10 +14,6 @@ If you are just curious about what you can do with Alchemy, **[you can refer to 
 Run the following commands to use Alchemy with Docker (requires **Docker and Docker-compose**):
 
 ```bash
-# To use the upload function, we need access to the server 
-sudo apt-get install x11-xserver-utils
-xhost +
-
 # Run the docker compose
 docker-compose up --build
 ```

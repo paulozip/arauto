@@ -8,7 +8,7 @@ Alchemy is an open-source framework that aims to make it **easier to model and e
 Alchemy can be used in three different ways:
 
 ## Web
-If you are just curious about what you can do with Alchemy, **[you can refer to this website](COLOCAR_LINK)**. We also provide an one-click deploy with Heroku, so you can use Alchemy in your own cloud account. **Your first compute instance on Heroku is free**.
+If you are just curious about what you can do with Alchemy, **[you can refer to this website](https://project-alchemy.herokuapp.com)**. This version contains some .
 
 ## Docker
 Run the following commands to use Alchemy with Docker (requires **Docker and Docker-compose**):

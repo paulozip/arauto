@@ -6,7 +6,7 @@ import streamlit as st
 import sys
 
 sys.path.insert(0, 'lib/')
-sys.tracebacklimit = 0 # Hide traceback on errors
+#sys.tracebacklimit = 0 # Hide traceback on errors
 
 from decompose_series import decompose_series
 from file_selector import file_selector
@@ -40,7 +40,7 @@ st.sidebar.title('Your data')
 filename, df = file_selector()
 
 st.markdown('### First lines of your data')
-st.dataframe(df.head()) # First lines of DataFrame
+st.dataframe(df.head(10)) # First lines of DataFrame
 
 ds_column, y, data_frequency, test_set_size, exog_variables = sidebar_menus('feature_target', df=df)
 
@@ -58,10 +58,8 @@ show_seasonal_decompose = sidebar_menus('seasonal')
 show_adfuller_test = sidebar_menus('adfuller')
 show_train_prediction = sidebar_menus('train_predictions')
 show_test_prediction = sidebar_menus('test_predictions')
-plot_adfuller_result = False
+force_transformation = sidebar_menus('force_transformations') # You can force a transformation technique
 
-# You may select a transformation technique
-force_transformation = sidebar_menus('force_transformations')
 difference_size = None
 seasonal_difference_size = None
 
@@ -70,6 +68,7 @@ if ('Custom Difference') in force_transformation:
     difference_size = st.sidebar.slider('Difference size: ', 0, 30, 1)
     seasonal_difference_size = st.sidebar.slider('Seasonal Difference size: ', 0, 30, 1)
 
+plot_adfuller_result = False
 if show_adfuller_test:
     plot_adfuller_result = True
 
@@ -95,7 +94,7 @@ ts, d, D, seasonality, acf_pacf_data, transformation_function, test_stationarity
 st.markdown('**Data after stationary test**')
 show_stationary_data = st.checkbox('Show data')
 if show_stationary_data:
-    st.dataframe(ts)
+    st.dataframe(acf_pacf_data)
 
 st.title('ACF and PACF estimation')
 p, q, P, Q = find_acf_pacf(acf_pacf_data, seasonality)

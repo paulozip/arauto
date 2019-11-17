@@ -31,7 +31,7 @@ def test_stationary(timeseries, plot_results=False, data_frequency=None, force_t
         transformation_function (function): the function that was used to transform the time series to be stationary. 
         It can be a lambda function or a Numpy Log function (np.log)
     '''
-    
+
     seasonality_dict = {'Hourly': 24, 
                         'Daily': 30, 
                         'Monthly': 12, 
@@ -49,7 +49,7 @@ def test_stationary(timeseries, plot_results=False, data_frequency=None, force_t
     # Testing non-transformed data first
     dftest = adfuller(original_timeseries, autolag='AIC')
     best_transformation = dftest
-
+    
     test_stationarity_code = '''
             # Applying Augmented Dickey-Fuller test
             dftest = adfuller(df, autolag='AIC')

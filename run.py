@@ -91,11 +91,6 @@ if show_seasonal_decompose:
 st.title('Checking stationarity')
 ts, d, D, seasonality, acf_pacf_data, transformation_function, test_stationarity_code = test_stationary(df[y], plot_adfuller_result, data_frequency)
 
-st.markdown('**Data after stationary test**')
-show_stationary_data = st.checkbox('Show data')
-if show_stationary_data:
-    st.dataframe(acf_pacf_data)
-
 st.title('ACF and PACF estimation')
 p, q, P, Q = find_acf_pacf(acf_pacf_data, seasonality)
 st.markdown('**Suggested parameters for your model**: {}x{}{}'.format((p, d, q), (P, D, Q), (seasonality)))
@@ -148,7 +143,7 @@ if train_model:
                     We\'re going to find the best parameters for your model. This might take some minutes. 
                     Now it's a good time to grab some coffee.
                     ''')
-        p, d, q, P, D, Q, s = grid_search_arima(train_set, exog_train,  range(p+3), range(q+3), range(P+3), range(Q+3), d=d, D=D, s=s)
+        p, d, q, P, D, Q, s = grid_search_arima(train_set, exog_train,  range(p+2), range(q+2), range(P+2), range(Q+2), d=d, D=D, s=s)
         
     # Creating final model
     final_model = train_ts_model(transformation_function(ts), p, d, q, P, D, Q, s, exog_variables=exog_variables, quiet=True)

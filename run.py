@@ -66,7 +66,7 @@ difference_size = None
 seasonal_difference_size = None
 
 if ('Custom Difference') in force_transformation:
-    # If the user selects a custom transformation
+    # If the user selects a custom transformation, enable the difference options
     difference_size = st.sidebar.slider('Difference size: ', 0, 30, 1)
     seasonal_difference_size = st.sidebar.slider('Seasonal Difference size: ', 0, 30, 1)
 

@@ -256,7 +256,7 @@ def generate_code(filename, ds_column, y, test_stationarity_code, test_set_size,
                 print(df.head())
 
                 # Plotting your historical data
-                df.plot(grid=True)
+                df.plot(color='green')
                 plt.title('Absolute historical data')
                 plt.show()
 
@@ -278,7 +278,7 @@ def generate_code(filename, ds_column, y, test_stationarity_code, test_set_size,
 
                 # Plotting rolling statistics
                 fig = plt.figure(figsize=(10, 5))
-                orig = plt.plot(df, color='blue', label='Original')
+                orig = plt.plot(df, color='green', label='Original')
                 mean = plt.plot(mean, color='red', label='Mean')
                 std = plt.plot(std, color='black', label='Std')
 

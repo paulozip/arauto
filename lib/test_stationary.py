@@ -22,6 +22,9 @@ def test_stationary(timeseries, plot_results=False, data_frequency=None, force_t
             is passed by choosing one item from the sidebar
         custom_transformation_size (tuple of integers, optional): if a custom difference technique is selecting, we inform the amount of differences to take
             with this argument. Pass one value for difference and another for seasonal difference
+        force_transformation_technique (str): a transformation technique name to be forced on this function
+        custom_transformation_size (tuple of integers): a 2-sized tuple containing a integer for the differencing terms, 
+            and one for seasonal differencing terms
     
     Return:
         original_timeseries (Pandas Series): the original time series passed to the function 
@@ -35,40 +38,71 @@ def test_stationary(timeseries, plot_results=False, data_frequency=None, force_t
     
     transformer = timeSeriesTransformer(timeseries, data_frequency)
     progress_bar = st.progress(0)
+
+    if force_transformation_technique != None and force_transformation_technique != 'Choose the best one':
+        if force_transformation_technique == 'No transformation':
+            best_transformation = transformer.test_absolute_data()
+        if force_transformation_technique == 'First Difference':
+            best_transformation = transformer.test_first_difference()
+        if force_transformation_technique == 'Log First Difference':
+            best_transformation = transformer.test_log_difference()
+        if force_transformation_technique == 'Log transformation':
+            best_transformation = transformer.test_log_transformation()
+        if force_transformation_technique == 'Seasonal Difference':
+            best_transformation = transformer.test_seasonal_difference()
+        if force_transformation_technique == 'Log Difference + Seasonal Difference':
+            best_transformation = transformer.test_seasonal_log_difference()
+        if force_transformation_technique == 'Custom Difference':
+            # If a null value is passed by custom_transformation_size argument, raise an error
+            if custom_transformation_size == None:
+                raise ValueError('You cannot pass a empty value for Difference size and Seasonal Difference size')
+            # Executing test for custom difference
+            best_transformation = transformer.test_custom_difference(custom_transformation_size)
+
+        # If the test is not statistically significant, raise a Warning
+        if best_transformation[2] == None:
+            warn_message = '''
+                            This custom transformation is not statistically significant. 
+                            The Adfuller test result in {:.3f}, and the critical value of 1% is {:.3f}
+                            '''.format(best_transformation[0][0], best_transformation[0][4]['1%'])
+            st.warning(warn_message)
+
+        progress_bar.progress(100)
     
-    # Iterating over different stationarity transformations
-    absolute_test = transformer.test_absolute_data()
-    progress_bar.progress(20)
-    first_difference_test = transformer.test_first_difference()
-    progress_bar.progress(40)
-    log_difference_test = transformer.test_log_difference()
-    progress_bar.progress(60)
-    log_transformation_test = transformer.test_log_transformation()
-    progress_bar.progress(80)
-    seasonal_difference_test = transformer.test_seasonal_difference()
-    progress_bar.progress(100)
-    seasonal_log_difference_test = transformer.test_seasonal_log_difference()
+    else:
+        # Iterating over different stationarity transformations
+        absolute_test = transformer.test_absolute_data()
+        progress_bar.progress(20)
+        first_difference_test = transformer.test_first_difference()
+        progress_bar.progress(40)
+        log_difference_test = transformer.test_log_difference()
+        progress_bar.progress(60)
+        log_transformation_test = transformer.test_log_transformation()
+        progress_bar.progress(80)
+        seasonal_difference_test = transformer.test_seasonal_difference()
+        progress_bar.progress(100)
+        seasonal_log_difference_test = transformer.test_seasonal_log_difference()
 
-    # Generating a list with all transformations
-    transformations = [absolute_test, first_difference_test, log_difference_test, 
-                       log_transformation_test, seasonal_difference_test, seasonal_log_difference_test]
+        # Generating a list with all transformations
+        transformations = [absolute_test, first_difference_test, log_difference_test, 
+                        log_transformation_test, seasonal_difference_test, seasonal_log_difference_test]
 
-    # Best transformation so far. We start with the absolute and non-transformed data
-    best_transformation = absolute_test
+        # Best transformation so far. We start with the absolute and non-transformed data
+        best_transformation = absolute_test
 
-    # Iteranting over each transformation
-    for transformation in transformations:
-        if transformation[0] < best_transformation[0] and transformation[2] != None:
-            best_transformation = transformation
+        # Iteranting over each transformation
+        for transformation in transformations:
+            if transformation[0] < best_transformation[0] and transformation[2] != None:
+                best_transformation = transformation
 
     # Checking rolling statistics
-    mean = timeseries.rolling(window=best_transformation[7]).mean()
-    std = timeseries.rolling(window=best_transformation[7]).std()
+    mean = best_transformation[1].rolling(window=best_transformation[7]).mean()
+    std = best_transformation[1].rolling(window=best_transformation[7]).std()
     
     if plot_results:
         # Plotting rolling statistics
         fig = plt.figure(figsize=(10, 5))
-        orig = plt.plot(timeseries, color='green', label='Original')
+        orig = plt.plot(best_transformation[1], color='green', label='Original')
         mean = plt.plot(mean, color='red', label='Mean')
         std = plt.plot(std, color='black', label='Std')
         plt.legend(loc='best')

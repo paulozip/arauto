@@ -17,6 +17,23 @@ class timeSeriesTransformer:
         self.label = None
         self.d = 0
         self.D = 0
+
+    def test_custom_difference(self, custom_transformation_size):
+        self.d = custom_transformation_size[0]
+        self.D = custom_transformation_size[1]
+
+        self.transformed_time_series = self.original_timeseries.diff(self.d).diff(self.seasonality * self.D).dropna()
+        self.dftest = adfuller(self.transformed_time_series, autolag='AIC')
+        self.transformation_function = lambda x: x
+
+        self.test_stationarity_code = '''
+                # Applying Augmented Dickey-Fuller test
+                dftest = adfuller(df.diff({}).diff({}).dropna(), autolag='AIC')
+                '''.format(self.d, self.D)
+
+        self.label = 'Custom Difference' if self.dftest[0] < self.dftest[4]['1%'] else None
+
+        return self.dftest, self.transformed_time_series, self.label, self.d, self.D, self.transformation_function, self.test_stationarity_code, self.seasonality
     
     def test_absolute_data(self):
         '''

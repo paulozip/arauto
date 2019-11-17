@@ -89,7 +89,14 @@ if show_seasonal_decompose:
 
 # Checking for stationarity in the series
 st.title('Checking stationarity')
-ts, d, D, seasonality, acf_pacf_data, transformation_function, test_stationarity_code = test_stationary(df[y], plot_adfuller_result, data_frequency)
+
+# If a function is not forced by the user, use the default pipeline
+if force_transformation == None:
+    ts, d, D, seasonality, acf_pacf_data, transformation_function, test_stationarity_code = test_stationary(df[y], plot_adfuller_result, data_frequency)
+else:
+    ts, d, D, seasonality, acf_pacf_data, transformation_function, test_stationarity_code = test_stationary(df[y], plot_adfuller_result, data_frequency, 
+                                                                                                            force_transformation_technique = force_transformation, 
+                                                                                                            custom_transformation_size = (difference_size, seasonal_difference_size))
 
 st.title('ACF and PACF estimation')
 p, q, P, Q = find_acf_pacf(acf_pacf_data, seasonality)

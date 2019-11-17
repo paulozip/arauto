@@ -60,6 +60,16 @@ show_train_prediction = sidebar_menus('train_predictions')
 show_test_prediction = sidebar_menus('test_predictions')
 plot_adfuller_result = False
 
+# You may select a transformation technique
+force_transformation = sidebar_menus('force_transformations')
+difference_size = None
+seasonal_difference_size = None
+
+if ('Custom Difference') in force_transformation:
+    # If the user selects a custom transformation
+    difference_size = st.sidebar.slider('Difference size: ', 0, 30, 1)
+    seasonal_difference_size = st.sidebar.slider('Seasonal Difference size: ', 0, 30, 1)
+
 if show_adfuller_test:
     plot_adfuller_result = True
 

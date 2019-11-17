@@ -5,7 +5,7 @@ import streamlit as st
 
 from statsmodels.tsa.stattools import adfuller
 
-def test_stationary(timeseries, plot_results=False, data_frequency=None):
+def test_stationary(timeseries, plot_results=False, data_frequency=None, force_transformation_technique=None, custom_transformation_size=None):
     '''
     Augmented Dickey-Fuller Test in order to check if we have a stationary series
 
@@ -17,6 +17,10 @@ def test_stationary(timeseries, plot_results=False, data_frequency=None):
         timeseries (Pandas Series): a timeseries to be used for the statistical tests and transformations
         plot_results (bool): Wether or not to plot the best time series transformation
         data_frequency (str, optional): the frequency that the data was collected (daily, monthly, yearly, etc.)
+        force_transformation_technique (str, optional): the name of a transformation technique to force. This argument 
+            is passed by choosing one item from the sidebar
+        custom_transformation_size (tuple of integers, optional): if a custom difference technique is selecting, we inform the amount of differences to take
+            with this argument. Pass one value for difference and another for seasonal difference
     
     Return:
         original_timeseries (Pandas Series): the original time series passed to the function 
@@ -27,6 +31,7 @@ def test_stationary(timeseries, plot_results=False, data_frequency=None):
         transformation_function (function): the function that was used to transform the time series to be stationary. 
         It can be a lambda function or a Numpy Log function (np.log)
     '''
+    
     seasonality_dict = {'Hourly': 24, 
                         'Daily': 30, 
                         'Monthly': 12, 
@@ -123,6 +128,7 @@ def test_stationary(timeseries, plot_results=False, data_frequency=None):
     # SEASONAL LOG DIFFERENCE
     progress_bar.progress(100)
     dftest = adfuller(np.log(original_timeseries).diff().diff(seasonality).dropna(), autolag='AIC')
+
     if dftest[0] < dftest[4]['1%'] and dftest[0] < best_transformation[0]:
         timeseries = np.log(original_timeseries).diff().diff(seasonality).dropna()
         transformation_function = np.log

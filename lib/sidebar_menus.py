@@ -40,6 +40,13 @@ def sidebar_menus(menu_name, test_set_size=None, seasonality=None, terms=(0, 0, 
         data_frequency = st.sidebar.selectbox('What frequency is your data? ', ['Hourly', 'Daily', 'Monthly', 'Quarterly', 'Yearly'], 1)
         test_set_size = st.sidebar.slider('Validation set size', 3, 30, seasonality_dict[data_frequency])
         return ds_column, y, data_frequency, test_set_size, exog_variables
+    elif menu_name == 'force_transformations':
+        st.sidebar.markdown('### Force data transformation (optional)')
+        transformation_techniques_list = ['Choose the best one', 'No transformation', 'First Difference', 
+                                          'Log transformation', 'Seasonal Difference', 'Log First Difference', 
+                                          'Log Difference + Seasonal Difference', 'Custom Difference']
+        transformation_techniques = st.sidebar.selectbox('Transformation technique', transformation_techniques_list, 0)
+        return transformation_techniques
     elif menu_name == 'terms':
         st.sidebar.markdown('### Model parameters')
         st.sidebar.text('Terms for (p, d, q)x(P, D, Q)s')

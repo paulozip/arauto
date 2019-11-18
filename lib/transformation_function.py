@@ -5,6 +5,7 @@ from statsmodels.tsa.stattools import adfuller
 class timeSeriesTransformer:
     def __init__(self, original_timeseries, data_frequency):
         self.seasonality_dict = {'Hourly': 24, 
+                                 'Weekly': 7,
                                  'Daily': 30, 
                                  'Monthly': 12, 
                                  'Quarterly': 4, 
@@ -206,6 +207,7 @@ class timeSeriesTransformer:
         '''
 
         self.transformed_time_series = np.log(self.original_timeseries).diff().dropna()
+        print(self.transformed_time_series)
         self.dftest = adfuller(self.transformed_time_series, autolag='AIC')
         self.transformation_function = np.log
 

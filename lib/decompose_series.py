@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import streamlit as st
 
+from pandas import infer_freq
 from statsmodels.tsa.seasonal import seasonal_decompose
 
 def decompose_series(ts):
@@ -15,7 +16,21 @@ def decompose_series(ts):
     ax2 = plt.subplot(312)
     ax3 = plt.subplot(313)
 
-    decomposition = seasonal_decompose(ts)
+    try:
+        decomposition = seasonal_decompose(ts)
+
+    except AttributeError:
+        error_message = '''
+                        Seems that your DATE column is not in a proper format. 
+                        Be sure that it\'s in a valid format for a Pandas to_datetime function.
+                        '''
+        raise AttributeError(error_message)
+    '''except ValueError:
+        error_message = \'''
+                        There was a problem while decomposing your series. Are you sure that you selected the right
+                        frequency on the sidebar?
+                        \'''
+        raise ValueError(error_message)'''
 
     decomposition.seasonal.plot(color='green', ax=ax1, title='Sazonality')
     plt.legend('')

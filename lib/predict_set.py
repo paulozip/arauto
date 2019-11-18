@@ -45,12 +45,20 @@ def predict_set(timeseries, y, seasonality, transformation_function, model, exog
         plt.title('Test set predictions')
         st.pyplot()
 
-    rmse = sqrt(mean_squared_error(timeseries[y].iloc[-(seasonality*3):], timeseries['ŷ'].iloc[-(seasonality*3):]))
-    aic = model.aic
-    bic = model.bic
-    hqic = model.hqic
-    mape = np.round(mean_abs_pct_error(timeseries[y].iloc[-(seasonality*3):], timeseries['ŷ'].iloc[-(seasonality*3):]), 2)
-    mae = np.round(mean_absolute_error(timeseries[y].iloc[-(seasonality*3):], timeseries['ŷ'].iloc[-(seasonality*3):]), 2)
+    try:
+        rmse = sqrt(mean_squared_error(timeseries[y].iloc[-(seasonality*3):], timeseries['ŷ'].iloc[-(seasonality*3):]))
+        aic = model.aic
+        bic = model.bic
+        hqic = model.hqic
+        mape = np.round(mean_abs_pct_error(timeseries[y].iloc[-(seasonality*3):], timeseries['ŷ'].iloc[-(seasonality*3):]), 2)
+        mae = np.round(mean_absolute_error(timeseries[y].iloc[-(seasonality*3):], timeseries['ŷ'].iloc[-(seasonality*3):]), 2)
+    except ValueError:
+        error_message = '''
+                        There was a problem while we calculated the model metrics. 
+                        Usually this is due a problem with the format of the DATE column. 
+                        Be sure it is in a valid format for Pandas to_datetime function
+                        '''
+        raise ValueError(error_message)
     
     metrics_df = pd.DataFrame(data=[rmse, aic, bic, hqic, mape, mae], columns = ['{} SET METRICS'.format('TEST' if forecast else 'TRAIN')], index = ['RMSE', 'AIC', 'BIC', 'HQIC', 'MAPE', 'MAE'])
     st.markdown('### **Metrics**')

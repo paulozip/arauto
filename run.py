@@ -75,7 +75,7 @@ if show_adfuller_test:
 # Show the historical plot?
 if show_absolute_plot:
     st.markdown('# Historical data ')
-    df.plot(color='green')
+    df[y].plot(color='green')
     plt.title('Absolute historical data')
     st.pyplot()
 

@@ -13,6 +13,7 @@ def sidebar_menus(menu_name, test_set_size=None, seasonality=None, terms=(0, 0, 
     '''
     seasonality_dict = {'Hourly': 24, 
                         'Daily': 30, 
+                        'Weekly': 7,
                         'Monthly': 12, 
                         'Quarterly': 4, 
                         'Yearly': 10}
@@ -37,7 +38,7 @@ def sidebar_menus(menu_name, test_set_size=None, seasonality=None, terms=(0, 0, 
         ds_column = st.sidebar.selectbox('Which one is your DATE column?', df.columns, 0)
         y = st.sidebar.selectbox('Which column you want to PREDICT?', df.columns, 1)
         exog_variables = st.sidebar.multiselect('Which are your exogenous variables?', df.drop([ds_column, y], axis=1).columns)
-        data_frequency = st.sidebar.selectbox('What frequency is your data? ', ['Hourly', 'Daily', 'Monthly', 'Quarterly', 'Yearly'], 1)
+        data_frequency = st.sidebar.selectbox('What frequency is your data? ', ['Hourly', 'Daily', 'Weekly', 'Monthly', 'Quarterly', 'Yearly'], 1)
         test_set_size = st.sidebar.slider('Validation set size', 3, 30, seasonality_dict[data_frequency])
         return ds_column, y, data_frequency, test_set_size, exog_variables
     elif menu_name == 'force_transformations':
@@ -50,12 +51,12 @@ def sidebar_menus(menu_name, test_set_size=None, seasonality=None, terms=(0, 0, 
     elif menu_name == 'terms':
         st.sidebar.markdown('### Model parameters')
         st.sidebar.text('Terms for (p, d, q)x(P, D, Q)s')
-        p = st.sidebar.slider('p (AR)', 0, 10, terms[0])
+        p = st.sidebar.slider('p (AR)', 0, 30, terms[0])
         d = st.sidebar.slider('d (I)', 0, 3, terms[1])
-        q = st.sidebar.slider('q (MA)', 0, 10, terms[2])
-        P = st.sidebar.slider('P (Seasonal AR)', 0, 10, terms[3])
+        q = st.sidebar.slider('q (MA)', 0, 30, terms[2])
+        P = st.sidebar.slider('P (Seasonal AR)', 0, 30, terms[3])
         D = st.sidebar.slider('D (Amount of seasonal difference)', 0, 3, terms[4])
-        Q = st.sidebar.slider('Q (Seasonal MA)', 0, 10, terms[5])
+        Q = st.sidebar.slider('Q (Seasonal MA)', 0, 30, terms[5])
         s = st.sidebar.slider('s (Seasonal frequency)', 0, 30, terms[6])
         
         st.sidebar.markdown('# Forecast periods')

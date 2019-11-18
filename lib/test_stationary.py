@@ -33,7 +33,7 @@ def test_stationary(timeseries, plot_results=False, data_frequency=None, force_t
         seasonality (int): the seasonal frequency that occurs in the time series. It's based on the data_frequency parameter
         timeseries (Pandas Series): a transformed time series based on the best stationarity transformation (differencing, log, etc.)
         transformation_function (function): the function that was used to transform the time series to be stationary. 
-        It can be a lambda function or a Numpy Log function (np.log)
+        It can be a lambda function or a Numpy Log function (np.log1p)
     '''
     
     transformer = timeSeriesTransformer(timeseries, data_frequency)

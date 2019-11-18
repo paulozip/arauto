@@ -53,7 +53,7 @@ def grid_search_arima(train_data, exog,  p_range, q_range, P_range, Q_range, d=1
                                 best_model_hqic = np.round(model.hqic,0)
                                 best_model_order = (p_, d, q_, P_, D, Q_, s)
                                 current_best_model = model
-                                resid = np.round(np.exp(current_best_model.resid).mean(), 3)
+                                resid = np.round(np.expm1(current_best_model.resid).mean(), 3)
                                 models.append(model)
                                 #st.markdown("------------------")
                                 #st.markdown("**Best model so far**: SARIMA {}".format(best_model_order)) 

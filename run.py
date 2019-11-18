@@ -131,15 +131,15 @@ if train_model:
 
     st.markdown('## **Train set prediction**')
     st.write('The model was trained with this data. It\'s trying to predict the same data')
-    if transformation_function == np.log:
-        predict_set(train_set.iloc[-24:], y, seasonality, np.exp, model, show_train_prediction=show_train_prediction, show_test_prediction=show_test_prediction)
+    if transformation_function == np.log1p:
+        predict_set(train_set.iloc[-24:], y, seasonality, np.expm1, model, show_train_prediction=show_train_prediction, show_test_prediction=show_test_prediction)
     else:
         predict_set(train_set.iloc[-24:], y, seasonality, transformation_function, model, show_train_prediction=show_train_prediction, show_test_prediction=show_test_prediction)
     
     st.markdown('## **Test set forecast**')
     st.write('Unseen data. The model was not trained with this data and it\'s trying to forecast')
-    if transformation_function == np.log:
-        predict_set(test_set, y, seasonality, np.exp, model, exog_variables=exog_test,forecast=True, show_train_prediction=show_train_prediction, show_test_prediction=show_test_prediction)
+    if transformation_function == np.log1p:
+        predict_set(test_set, y, seasonality, np.expm1, model, exog_variables=exog_test,forecast=True, show_train_prediction=show_train_prediction, show_test_prediction=show_test_prediction)
     else:
         predict_set(test_set, y, seasonality, transformation_function, model, exog_variables=exog_test, forecast=True, show_train_prediction=show_train_prediction, show_test_prediction=show_test_prediction)
 
@@ -161,9 +161,9 @@ if train_model:
     if type(exog_variables) == type(pd.DataFrame()):
         st.write('You are using exogenous variables. We can\'t forecast the future since we don\'t have the exogenous variables for future periods. Adapt the code below to use them.' )
     else:
-        if transformation_function == np.log:
-            forecasts = np.exp(final_model.forecast(periods_to_forecast))
-            confidence_interval = np.exp(final_model.get_forecast(periods_to_forecast).conf_int())
+        if transformation_function == np.log1p:
+            forecasts = np.expm1(final_model.forecast(periods_to_forecast))
+            confidence_interval = np.expm1(final_model.get_forecast(periods_to_forecast).conf_int())
 
         else:
             forecasts = final_model.forecast(periods_to_forecast)

@@ -184,7 +184,7 @@ def generate_code(filename, ds_column, y, test_stationarity_code, test_set_size,
                                             models.append(model)
                                             print("Best model so far: SARIMA" + str(best_model_order) + 
                                                 "AIC: {{}} BIC: {{}} HQIC: {{}}".format(best_model_aic,best_model_bic,best_model_hqic)+
-                                                "Resid: {{}}".format(np.round(np.exp(current_best_model.resid).mean(), 3)))
+                                                "Resid: {{}}".format(np.round(np.expm1(current_best_model.resid).mean(), 3)))
                                     except:
                                         pass
 
@@ -302,7 +302,7 @@ def generate_code(filename, ds_column, y, test_stationarity_code, test_set_size,
                 train_transformation_func = {0}
                 train_set = train_transformation_func(df.iloc[:-{1}])
                 test_set = train_transformation_func(df.iloc[-{1}:])
-                         '''.format('np.log' if transformation_function == np.log else 'lambda x: x', test_set_size)
+                         '''.format('np.log1p' if transformation_function == np.log1p else 'lambda x: x', test_set_size)
 
     train_model = f'''
                 # Training model
@@ -321,12 +321,12 @@ def generate_code(filename, ds_column, y, test_stationarity_code, test_set_size,
     
     predict_set = '''
                 predict_set(df, '{}', {}, {}, mod)
-                  '''.format(y, seasonality, 'np.log' if transformation_function == np.log else 'lambda x: x')
+                  '''.format(y, seasonality, 'np.log1p' if transformation_function == np.log1p else 'lambda x: x')
 
     forecasting_code =  '''
                 # Forecasting out-of-sample periods
-                forecasts = np.exp(mod.forecast({0}))
-                confidence_interval = np.exp(mod.get_forecast({0}).conf_int())
+                forecasts = np.expm1(mod.forecast({0}))
+                confidence_interval = np.expm1(mod.get_forecast({0}).conf_int())
                 
                 # Generating confidence interval and plotting forecasting
                 confidence_interval.columns = ['ci_lower', 'ci_upper']

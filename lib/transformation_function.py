@@ -131,14 +131,14 @@ class timeSeriesTransformer:
             seasonality (int): the amount of seasonality terms
         '''
 
-        self.transformed_time_series = np.log(self.original_timeseries)
+        self.transformed_time_series = np.log1p(self.original_timeseries)
         self.dftest = adfuller(self.transformed_time_series, autolag='AIC')
-        self.transformation_function = np.log
+        self.transformation_function = np.log1p
 
         self.test_stationarity_code = '''
                 # Applying Augmented Dickey-Fuller test
-                df = np.log(df) 
-                dftest = adfuller(np.log(df), autolag='AIC')
+                df = np.log1p(df) 
+                dftest = adfuller(np.log1p(df), autolag='AIC')
                     '''
         self.label = 'Log transformation' if self.dftest[0] < self.dftest[4]['1%'] else None
         self.d = 0
@@ -206,14 +206,14 @@ class timeSeriesTransformer:
             seasonality (int): the amount of seasonality terms
         '''
 
-        self.transformed_time_series = np.log(self.original_timeseries).diff().dropna()
+        self.transformed_time_series = np.log1p(self.original_timeseries).diff().dropna()
         print(self.transformed_time_series)
         self.dftest = adfuller(self.transformed_time_series, autolag='AIC')
-        self.transformation_function = np.log
+        self.transformation_function = np.log1p
 
         self.test_stationarity_code = '''
                 # Applying Augmented Dickey-Fuller test
-                df = np.log(df)
+                df = np.log1p(df)
                 dftest = adfuller(df.diff().dropna(), autolag='AIC')
                     '''
         self.label = 'Log Difference' if self.dftest[0] < self.dftest[4]['1%'] else None
@@ -245,13 +245,13 @@ class timeSeriesTransformer:
             seasonality (int): the amount of seasonality terms
         '''
 
-        self.transformed_time_series = np.log(self.original_timeseries).diff().diff(self.seasonality).dropna()
+        self.transformed_time_series = np.log1p(self.original_timeseries).diff().diff(self.seasonality).dropna()
         self.dftest = adfuller(self.transformed_time_series, autolag='AIC')
-        self.transformation_function = np.log
+        self.transformation_function = np.log1p
 
         self.test_stationarity_code = '''
                 # Applying Augmented Dickey-Fuller test
-                df = np.log(df)
+                df = np.log1p(df)
                 dftest = adfuller(df.diff().diff({}).dropna(), autolag='AIC')
                 '''.format(self.seasonality)
 

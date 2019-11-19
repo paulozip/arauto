@@ -207,7 +207,6 @@ class timeSeriesTransformer:
         '''
 
         self.transformed_time_series = np.log1p(self.original_timeseries).diff().dropna()
-        print(self.transformed_time_series)
         self.dftest = adfuller(self.transformed_time_series, autolag='AIC')
         self.transformation_function = np.log1p
 

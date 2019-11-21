@@ -72,15 +72,15 @@ plot_adfuller_result = False
 if show_adfuller_test:
     plot_adfuller_result = True
 
+# Transform DataFrame to a Series
+df = transform_time_series(df, ds_column, data_frequency, y)
+
 # Show the historical plot?
 if show_absolute_plot:
     st.markdown('# Historical data ')
     df[y].plot(color='green')
     plt.title('Absolute historical data')
     st.pyplot()
-
-# Transform DataFrame to a Series
-df = transform_time_series(df, ds_column)
 
 # Show decomposition plot
 if show_seasonal_decompose:

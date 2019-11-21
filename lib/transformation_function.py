@@ -5,7 +5,6 @@ from statsmodels.tsa.stattools import adfuller
 class timeSeriesTransformer:
     def __init__(self, original_timeseries, data_frequency):
         self.seasonality_dict = {'Hourly': 24, 
-                                 'Weekly': 7,
                                  'Daily': 30, 
                                  'Monthly': 12, 
                                  'Quarterly': 4, 

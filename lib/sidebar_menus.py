@@ -13,7 +13,6 @@ def sidebar_menus(menu_name, test_set_size=None, seasonality=None, terms=(0, 0, 
     '''
     seasonality_dict = {'Hourly': 24, 
                         'Daily': 30, 
-                        'Weekly': 7,
                         'Monthly': 12, 
                         'Quarterly': 4, 
                         'Yearly': 10}
@@ -34,11 +33,11 @@ def sidebar_menus(menu_name, test_set_size=None, seasonality=None, terms=(0, 0, 
         show_test_predict_plot = st.sidebar.checkbox('Test set forecast')
         return show_test_predict_plot
     elif menu_name == 'feature_target':
+        data_frequency = st.sidebar.selectbox('What is the FREQUENCY of your data? ', ['Hourly', 'Daily', 'Monthly', 'Quarterly', 'Yearly'], 1)
         st.sidebar.markdown('### Choosing columns')
         ds_column = st.sidebar.selectbox('Which one is your DATE column?', df.columns, 0)
         y = st.sidebar.selectbox('Which column you want to PREDICT?', df.columns, 1)
         exog_variables = st.sidebar.multiselect('Which are your exogenous variables?', df.drop([ds_column, y], axis=1).columns)
-        data_frequency = st.sidebar.selectbox('What frequency is your data? ', ['Hourly', 'Daily', 'Weekly', 'Monthly', 'Quarterly', 'Yearly'], 1)
         test_set_size = st.sidebar.slider('Validation set size', 3, 30, seasonality_dict[data_frequency])
         return ds_column, y, data_frequency, test_set_size, exog_variables
     elif menu_name == 'force_transformations':

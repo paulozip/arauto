@@ -104,7 +104,24 @@ st.markdown('**Suggested parameters for your model**: {}x{}{}'.format((p, d, q),
 
 st.title('Time to train!')
 st.write('Select the terms on the side bar and click "Do your Magic!" button')
-p, d, q, P, D, Q, s, train_model, periods_to_forecast, execute_grid_search = sidebar_menus('terms', test_set_size, seasonality, (p, d, q, P, D, Q, seasonality), df=ts)
+try:
+    p, d, q, P, D, Q, s, train_model, periods_to_forecast, execute_grid_search = sidebar_menus('terms', test_set_size, seasonality, (p, d, q, P, D, Q, seasonality), df=ts)
+except ValueError:
+    error_message = '''
+                    A problem has occurred while we tried to find the best initial parameters for p, d, and q.
+                    Please, check if your FREQUENCY field is correct for your dataset. For example, if your dataset
+                    was collected in a daily basis, check if you selected DAILY in the FREQUENCY field.
+                    '''
+    raise ValueError(error_message)
+
+# Showing a warning when Grid Search operation is too expensive
+if execute_grid_search:
+    if data_frequency in ['Hourly', 'Daily'] or p >= 5 or q >= 5:
+        warning_grid_search = '''
+                            Apply Grid Search on this dataset with these settings might be computationally expensive. 
+                            Be sure you have enough memory for this operation, otherwise, it will fail
+                            '''
+        st.sidebar.warning(warning_grid_search)
 
 # If train button has be clicked 
 if train_model:

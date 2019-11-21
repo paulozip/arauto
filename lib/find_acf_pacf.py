@@ -12,7 +12,7 @@ def find_acf_pacf(timeseries, seasonality):
             to compute ACF and PACF
     '''
     
-    fig = plt.Figure(figsize=(12,7))
+    fig = plt.figure(figsize=(10,5))
     ax1 = plt.subplot(211)
     ax2 = plt.subplot(212)
     

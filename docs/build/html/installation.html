@@ -1,0 +1,158 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installation &mdash; Alchemy 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Alchemy 0.1.0 documentation" href="index.html" />
+    <link rel="next" title="Need any help?" href="help.html" />
+    <link rel="prev" title="Alchemy" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="help.html" title="Need any help?"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Alchemy"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Alchemy 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>Alchemy can be used in three different ways:</p>
+<div class="section" id="web">
+<h2>Web<a class="headerlink" href="#web" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">If you are just curious about what you can do with Alchemy, <a class="reference external" href="https://project-alchemy.herokuapp.com">you can refer to this website</a>.</div>
+<div class="line">This version contains some example datasets that you can use to check how Alchemy works.</div>
+</div>
+<p><strong>Please note that this version is a Heroku&#8217;s free tier instance</strong>. Due to high traffic, you may experience some poor performance</p>
+</div>
+<div class="section" id="docker">
+<h2>Docker<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h2>
+<p>Run the following commands to use Alchemy with Docker (requires <strong>Docker and Docker-compose</strong>)</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Run the docker compose</span>
+docker-compose up --build
+</pre></div>
+</div>
+</div>
+<div class="section" id="local-installation">
+<h2>Local installation<a class="headerlink" href="#local-installation" title="Permalink to this headline">¶</a></h2>
+<p><strong>Tip</strong>: we recommend you to use Anaconda environments</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="c1"># Clone the repository</span>
+git clone https://github.com/paulozip/alchemy.git
+<span class="nb">cd</span> alchemy
+
+<span class="c1"># If you&#39;re using Anaconda</span>
+conda create --name alchemy_env
+conda activate alchemy_env
+
+<span class="c1"># Install dependencies</span>
+pip install requirements.txt
+
+<span class="c1"># Run Streamlit</span>
+streamlit run run.py
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installation</a><ul>
+<li><a class="reference internal" href="#web">Web</a></li>
+<li><a class="reference internal" href="#docker">Docker</a></li>
+<li><a class="reference internal" href="#local-installation">Local installation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Alchemy</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="help.html"
+                        title="next chapter">Need any help?</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/installation.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="help.html" title="Need any help?"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Alchemy"
+             >previous</a> |</li>
+        <li><a href="index.html">Alchemy 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2019, Paulo Vasconcellos.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

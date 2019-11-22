@@ -4,11 +4,22 @@
 
 Alchemy is an open-source framework that aims to make it **easier to model and experiment time series analysis and forecasting**. Alchemy offers a intuitive and interactive interface to explore different parameters for models using Autoregressive models (AR, ARMA, ARIMA, SARIMA, ARIMAX, and SARIMAX). More estimators and algorithms are on the way.
 
+## Features
+
+* **Support to exogenous regressors** (independent variables)
+* Seasonal decompose that let's you know the **Trend, Seasonality and Resid** of your data
+* Stationarity Test using **Augmented Dickey-Fuller** test
+* Customization of data transforming for stationarity: you can use from first difference to seasonal log to transform your data
+* **ACF** (Autocorrelation function) and **PACF** (Parcial correlation function) for terms estimation
+* Customize ARIMA terms or **let Alchemy choose the best for you** based on your data
+* **Grid search** feature for parameters tuning
+* Code generation: at the end of the process, Alchemy returns the code used in the process
+
 # Getting started
 Alchemy can be used in three different ways:
 
 ## Web
-If you are just curious about what you can do with Alchemy, **[you can refer to this website](https://project-alchemy.herokuapp.com)**. This version contains some .
+If you are just curious about what you can do with Alchemy, **[you can refer to this website](https://project-alchemy.herokuapp.com)**. This version contains some example datasets that you can use to check how Alchemy works.
 
 ## Docker
 Run the following commands to use Alchemy with Docker (requires **Docker and Docker-compose**):
@@ -63,3 +74,6 @@ At the end of the process, Alchemy will give you the source code used to make th
 Currently, this is an one-person project, but help is always welcome. **[You can suggest new ideas and features for us in our issue tracking](https://github.com/paulozip/alchemy/issues). Requests will be prioritized by thumbs up emoji** (👍).
 
 **If you want to collaborate with this project**, all you need to do is fork this repository, make new additions and modifications, and open a PR. I will validate it ASAP. 
+
+# A big thank you
+This project would not be possible without (Streamlit)[https://github.com/streamlit/streamlit]: an awesome tool to build ML tools. Please refer to their Github repository to know further, or you can also (check their blog post)[https://towardsdatascience.com/coding-ml-tools-like-you-code-ml-models-ddba3357eace]

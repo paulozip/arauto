@@ -15,25 +15,37 @@ def file_selector(folder_path='datasets/'):
     '''
 
     filenames = os.listdir(folder_path)
-    filenames.sort(reverse=True)
+    filenames.sort()
     selected_filename = st.sidebar.selectbox('Select a file', filenames)
     
-    # Checking if the file is in a valid format
+    # Checking if the file is in a valid delimited format
     if str.lower(selected_filename.split('.')[-1]) in ['csv', 'txt']:
         try:
             df = pd.read_csv(os.path.join(folder_path, selected_filename))
         except pd._libs.parsers.ParserError:
-            df = pd.read_csv(os.path.join(folder_path, selected_filename), delimiter=';')
+            try:
+                df = pd.read_csv(os.path.join(folder_path, selected_filename), delimiter=';')
+            except UnicodeDecodeError:
+                df = pd.read_csv(os.path.join(folder_path, selected_filename), delimiter=';', encoding='latin1')
         except UnicodeDecodeError:
-            df = pd.read_csv(os.path.join(folder_path, selected_filename), encoding='latin1')
+            try:
+                df = pd.read_csv(os.path.join(folder_path, selected_filename), encoding='latin1')
+            except pd._libs.parsers.ParserError:
+                df = pd.read_csv(os.path.join(folder_path, selected_filename), encoding='latin1', delimiter=';')
 
     elif str.lower(selected_filename.split('.')[-1]) == 'xls' or str.lower(selected_filename.split('.')[-1]) == 'xlsx':
         try:
             df = pd.read_excel(os.path.join(folder_path, selected_filename))
         except pd._libs.parsers.ParserError:
-            df = pd.read_excel(os.path.join(folder_path, selected_filename), delimiter=';')
+            try:
+                df = pd.read_excel(os.path.join(folder_path, selected_filename), delimiter=';')
+            except UnicodeDecodeError:
+                df = pd.read_excel(os.path.join(folder_path, selected_filename), delimiter=';', encoding='latin1')
         except UnicodeDecodeError:
-            df = pd.read_excel(os.path.join(folder_path, selected_filename), encoding='latin1')
+            try:
+                df = pd.read_excel(os.path.join(folder_path, selected_filename), encoding='latin1')
+            except pd._libs.parsers.ParserError:
+                df = pd.read_excel(os.path.join(folder_path, selected_filename), encoding='latin1', delimiter=';')
     else:
         st.error('This file format is not supported yet')
 

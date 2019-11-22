@@ -1,3 +1,5 @@
+[![Documentation Status](https://readthedocs.org/projects/python-alchemy/badge/?version=latest)](https://python-alchemy.readthedocs.io/en/latest/?badge=latest)
+
 ![](img/logo.png)
 # Project: Alchemy
 *A interactive tool for time series experimentation*

@@ -1,0 +1,203 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>How to use Alchemy &mdash; Alchemy 0.1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Alchemy 0.1.0 documentation" href="index.html" />
+    <link rel="next" title="How to upload your dataset" href="upload_data.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="upload_data.html" title="How to upload your dataset"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Alchemy 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="how-to-use-alchemy">
+<h1>How to use Alchemy<a class="headerlink" href="#how-to-use-alchemy" title="Permalink to this headline">¶</a></h1>
+<p>Alchemy was built to be as intuitive as possible. It offers an interface that simulates the line of thinking of analysing and training a model for forecasting. This tutorial will guide you through all the process, starting by the top menus.</p>
+<div class="section" id="your-data-menu">
+<h2>Your data menu<a class="headerlink" href="#your-data-menu" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/alchemy_your_data_menu.gif" src="_images/alchemy_your_data_menu.gif" />
+<p><strong>This is where you will pick a file for Alchemy to analyse and model</strong>. You can play with some toy datasets or you can <a class="reference external" href="upload_data.html">upload your own dataset</a> using the REST API. <strong>You will also select the frequency of your data</strong>. If your data was collected in a daily basis, select <strong>Daily</strong>, if it was collected in a monthly basis, select <strong>Monthly</strong>. This is an important step since <strong>Alchemy will use this field to understand the seasonality of the time series</strong>, and apply different techniques to find the best model.</p>
+<p><strong>Fields</strong></p>
+<ul class="simple">
+<li><strong>Select a file</strong>: an CSV, TXT, Excel, or delimited file.</li>
+<li><strong>What is the FREQUENCY of your data?</strong>: the frequency that the dataset was collected. Null values will be replaced by 0.</li>
+</ul>
+</div>
+<div class="section" id="choosing-columns-menu">
+<h2>Choosing columns menu<a class="headerlink" href="#choosing-columns-menu" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/alchemy_choosing_columns_menu.gif" src="_images/alchemy_choosing_columns_menu.gif" />
+<p>This is step is composed by 4 fields that will instruct Alchemy which columns to use when training the model. In this step you can select <strong>exogenous variables, what are nothing but columns that will help the model to give different ways for your predictions</strong>. For example:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="15%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3">My Daily Sales</th>
+</tr>
+<tr class="row-even"><th class="head">Date</th>
+<th class="head">Sales</th>
+<th class="head">is_christmas_period</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-odd"><td>2019-11-29</td>
+<td>500</td>
+<td>0</td>
+</tr>
+<tr class="row-even"><td>2019-11-30</td>
+<td>470</td>
+<td>0</td>
+</tr>
+<tr class="row-odd"><td>2019-12-01</td>
+<td>200</td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td>2019-12-02</td>
+<td>150</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Let&#8217;s say that you are predicting your company&#8217;s daily sales, and in the Christmas period the sales go down. You can use a column called <tt class="code docutils literal"><span class="pre">is_christmas_period</span></tt>, where you place <tt class="code docutils literal"><span class="pre">1</span></tt> for rows (days) on your dataset that was collected in christmas period. Alchemy will try to use columns like this to enhance the predictions.</p>
+<p><strong>Fields</strong></p>
+<ul class="simple">
+<li><strong>Which one is your DATE column?</strong>: the column used to identify the time point where the data was collected.</li>
+<li><strong>Which column you want to PREDICT?</strong>: the column with the values that you are trying to predict. It can be data like total sales, temperature measured, stock prices, and so on.</li>
+<li><strong>Which are your exogenous variables?</strong>: the independent variables (e.g.: <tt class="code docutils literal"><span class="pre">is_christmas_period</span></tt>) that might be important to give different weights to predictions. <strong>By informing exogenous variables will use automatically models that support regressors, e.g. ARIMAX.</strong></li>
+<li><strong>Validation set size</strong>: how many period you want to let for Alchemy validate the model? <strong>It&#8217;s recommended to configure this field with the same amount of periods that you want to forecast</strong>. For example, if your data was collected in a monthly basis, and you want to forecast the next 3 months, let this field with value 3.</li>
+</ul>
+</div>
+<div class="section" id="charts-menu">
+<h2>Charts menu<a class="headerlink" href="#charts-menu" title="Permalink to this headline">¶</a></h2>
+<img alt="_images/alchemy_charts_menu.gif" src="_images/alchemy_charts_menu.gif" />
+<p>In this section you can select some charts to appear on the screen. These charts are helpful to understand some steps of the model training, like the distribution data, seasonal decompose and out-of-sample predictions.</p>
+<p><strong>Fields</strong></p>
+<ul class="simple">
+<li><strong>Historical data</strong>: show the absolute distribution of your dataset just like it is. It can be useful to understand your data over time, and identify some interesting points like missing values of unusual scales.</li>
+<li><strong>Seasonal decompose</strong>: show the components of your time series. It returns informations like the time series trending, seasonality, and resid (what remains when you remove trending and seasonality).</li>
+<li><strong>Dickey-Fuller statistical test</strong>: to understand if your time series is stationary (one of the properties that make it possible to forecast data), Alchemy will execute the Augmented Dickey-Fuller test (a.k.a ADF test). By enabling this option, the transformed data with the best ADF test result (based on the lowest statistical result) will be plotted on Alchemy, with its moving average and standard deviation.</li>
+<li><strong>Train set predictions</strong>: enable this option if you wanna check how your model is predicting the data that it was trained with. Two plots are placed in the figure, one for the observed (real) data (labeled as <tt class="code docutils literal"><span class="pre">y</span></tt>), and the predicted data (labeled as <tt class="code docutils literal"><span class="pre">ŷ</span></tt>).</li>
+</ul>
+</div>
+<div class="section" id="force-data-transformation-menu">
+<h2>Force data transformation menu<a class="headerlink" href="#force-data-transformation-menu" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="model-parameters-menu">
+<h2>Model parameters menu<a class="headerlink" href="#model-parameters-menu" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="forecast-periods-menu">
+<h2>Forecast periods menu<a class="headerlink" href="#forecast-periods-menu" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">How to use Alchemy</a><ul>
+<li><a class="reference internal" href="#your-data-menu">Your data menu</a></li>
+<li><a class="reference internal" href="#choosing-columns-menu">Choosing columns menu</a></li>
+<li><a class="reference internal" href="#charts-menu">Charts menu</a></li>
+<li><a class="reference internal" href="#force-data-transformation-menu">Force data transformation menu</a></li>
+<li><a class="reference internal" href="#model-parameters-menu">Model parameters menu</a></li>
+<li><a class="reference internal" href="#forecast-periods-menu">Forecast periods menu</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installation.html"
+                        title="previous chapter">Installation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="upload_data.html"
+                        title="next chapter">How to upload your dataset</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/how_to_use.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="upload_data.html" title="How to upload your dataset"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="installation.html" title="Installation"
+             >previous</a> |</li>
+        <li><a href="index.html">Alchemy 0.1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2019, Paulo Vasconcellos.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

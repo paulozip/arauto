@@ -25,12 +25,11 @@ pd.set_option('display.float_format', lambda x: '%.3f' % x) # Granting that pand
 
 description =   '''
                 **Alchemy** is an open-source project that will help you to forecast the future from historical data. 
-                It uses statiscal models and machine learning to give you accurated predictions, and it's helpful for 
+                It uses statiscal models to give you accurated predictions for time series data, which is helpful for 
                 financial data, network traffic, sales, and much more.
                 '''
-
 # Description
-st.title('Project Alchemy 🧙‍♀️')
+st.image('img/banner.png')
 st.write('*An equivalent exchange: you give me data, I give you answers*')
 st.write(description)
 
@@ -39,7 +38,7 @@ st.sidebar.title('Your data')
 
 filename, df = file_selector()
 
-st.markdown('### First lines of your data')
+st.markdown('## **First lines of your data**')
 st.dataframe(df.head(10)) # First lines of DataFrame
 
 ds_column, y, data_frequency, test_set_size, exog_variables = sidebar_menus('feature_target', df=df)

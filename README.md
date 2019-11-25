@@ -4,7 +4,7 @@
 ![](https://img.shields.io/github/issues-closed/paulozip/alchemy?color=%238e44ad)
 
 ![](img/logo.png)
-# Project: Alchemy
+# Alchemy
 *A interactive tool for time series experimentation and forecasting*
 
 Alchemy is an open-source framework that aims to make it **easier to model and experiment time series analysis and forecasting**. Alchemy offers a intuitive and interactive interface to explore different parameters for models using Autoregressive models (AR, ARMA, ARIMA, SARIMA, ARIMAX, and SARIMAX). More estimators and algorithms are on the way.

@@ -2,7 +2,7 @@
 
 ![](img/logo.png)
 # Project: Alchemy
-*A interactive tool for time series experimentation*
+*A interactive tool for time series experimentation and forecasting*
 
 Alchemy is an open-source framework that aims to make it **easier to model and experiment time series analysis and forecasting**. Alchemy offers a intuitive and interactive interface to explore different parameters for models using Autoregressive models (AR, ARMA, ARIMA, SARIMA, ARIMAX, and SARIMAX). More estimators and algorithms are on the way.
 
@@ -15,7 +15,7 @@ Alchemy is an open-source framework that aims to make it **easier to model and e
 * **ACF** (Autocorrelation function) and **PACF** (Parcial correlation function) for terms estimation
 * Customize ARIMA terms or **let Alchemy choose the best for you** based on your data
 * **Grid search** feature for parameters tuning
-* Code generation: at the end of the process, Alchemy returns the code used in the process
+* Code generation: at the end of the process, Alchemy returns the code used to transform the data and train the model
 
 # Getting started
 Alchemy can be used in three different ways:
@@ -78,4 +78,4 @@ Currently, this is an one-person project, but help is always welcome. **[You can
 **If you want to collaborate with this project**, all you need to do is fork this repository, make new additions and modifications, and open a PR. I will validate it ASAP. 
 
 # A big thank you
-This project would not be possible without (Streamlit)[https://github.com/streamlit/streamlit]: an awesome tool to build ML tools. Please refer to their Github repository to know further, or you can also (check their blog post)[https://towardsdatascience.com/coding-ml-tools-like-you-code-ml-models-ddba3357eace]
+This project would not be possible without [Streamlit](https://github.com/streamlit/streamlit): an awesome tool to build ML tools. Please refer to their Github repository to know further, or you can also [check their blog post](https://towardsdatascience.com/coding-ml-tools-like-you-code-ml-models-ddba3357eace)

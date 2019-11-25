@@ -1,4 +1,7 @@
 [![Documentation Status](https://readthedocs.org/projects/python-alchemy/badge/?version=latest)](https://python-alchemy.readthedocs.io/en/latest/?badge=latest)
+![](https://img.shields.io/github/languages/top/paulozip/alchemy)
+![](https://img.shields.io/github/issues-raw/paulozip/alchemy?color=%4cd137)
+![](https://img.shields.io/github/issues-closed/paulozip/alchemy?color=%238e44ad)
 
 ![](img/logo.png)
 # Project: Alchemy

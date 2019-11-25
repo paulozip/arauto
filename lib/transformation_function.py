@@ -253,7 +253,7 @@ class timeSeriesTransformer:
                 dftest = adfuller(df.diff().diff({}).dropna(), autolag='AIC')
                 '''.format(self.seasonality)
 
-        self.label = 'Seasonal Log Difference' if self.dftest[0] < self.dftest[4]['1%'] else None
+        self.label = 'Log Difference + Seasonal Difference' if self.dftest[0] < self.dftest[4]['1%'] else None
         self.d = 1
         self.D = 1
 

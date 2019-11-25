@@ -1,5 +1,6 @@
 Welcome to Alchemy's documentation! 
-=======
+===================================
+
 .. image:: ../../img/logo.png
   :width: 600
 
@@ -25,4 +26,5 @@ Contents
    installation
    how_to_use
    upload_data
+   how_to_choose_terms
    help

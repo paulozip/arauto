@@ -1,5 +1,5 @@
 Need any help?
-==========
+==============
 
 Hey, I will be happy to help you on whatever you need. 
 Please, refer to my contact infos below to ask for help.
@@ -15,7 +15,7 @@ How to contribute
 ^^^^^^^^^^^^^^^^^
 Currently, this project is maintained by just one person. It would be great to have more people collaborating and contributing with this open-source project. If you want to collaborate with Alchemy, here's what you can do:
 
-- Documentation and tutorial: it's really important to make users get into Alchemy as soon as they open the browser. Tutorials and deeper documentation could help us to achieve it.
-- New algorithms: there are many different algorithms that we could add to Alchemy, like ARCH, VAR, and Tree-based algorithms, to name a few. All you need to do is fork the repository, build the feature and open a PR to merge it.
-- Bug fixes: something might be broken. We need good people to fix it.
-- Tests: Alchemy doesn't contain tests, and this is wrong.
+- **Documentation and tutorial**: it's really important to make users get into Alchemy as soon as they open the browser. Tutorials and deeper documentation could help us to achieve it.
+- **New algorithms**: there are many different algorithms that we could add to Alchemy, like ARCH, VAR, and Tree-based algorithms, to name a few. All you need to do is fork the repository, build the feature and open a PR to merge it.
+- **Bug fixes**: something might be broken. We need good people to fix it.
+- **Tests**: Alchemy doesn't contain tests, and this is wrong.

@@ -8,7 +8,7 @@ class timeSeriesTransformer:
                                  'Daily': 30, 
                                  'Monthly': 12, 
                                  'Quarterly': 4, 
-                                 'Yearly': 10}
+                                 'Yearly': 5}
         self.seasonality = self.seasonality_dict[data_frequency]
         self.original_timeseries = original_timeseries
         self.transformed_time_series = original_timeseries

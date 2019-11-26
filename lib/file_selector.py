@@ -16,7 +16,8 @@ def file_selector(folder_path='datasets/'):
 
     filenames = os.listdir(folder_path)
     filenames.sort()
-    selected_filename = st.sidebar.selectbox('Select a file', filenames)
+    default_file_index = filenames.index('monthly_air_passengers.csv') if 'monthly_air_passengers.csv' in filenames else 0
+    selected_filename = st.sidebar.selectbox('Select a file', filenames, default_file_index)
     
     # Checking if the file is in a valid delimited format
     if str.lower(selected_filename.split('.')[-1]) in ['csv', 'txt']:

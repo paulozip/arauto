@@ -50,6 +50,9 @@ def train_ts_model(Y, p, d, q, P, D, Q, s, exog_variables=None, quiet=False):
         with st.spinner(np.random.choice(waiting_messages)):
             results = mod.fit()
         st.success('Done!')
-        st.text(results.summary())
-
+        
+        try:
+            st.text(results.summary())
+        except:
+            pass
     return results

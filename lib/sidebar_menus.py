@@ -1,4 +1,5 @@
 import streamlit as st
+import sys
 
 def sidebar_menus(menu_name, test_set_size=None, seasonality=None, terms=(0, 0, 0, 0, 0, 0, 0), df=None):
     '''
@@ -15,25 +16,35 @@ def sidebar_menus(menu_name, test_set_size=None, seasonality=None, terms=(0, 0, 
                         'Daily': 30, 
                         'Monthly': 12, 
                         'Quarterly': 4, 
-                        'Yearly': 10}
+                        'Yearly': 5}
 
     if menu_name == 'absolute':
-        show_absolute_plot = st.sidebar.checkbox('Historical data')
+        show_absolute_plot = st.sidebar.checkbox('Historical data', value=True)
         return show_absolute_plot
     elif menu_name == 'seasonal':
-        show_seasonal_decompose = st.sidebar.checkbox('Seasonal decompose')
+        show_seasonal_decompose = st.sidebar.checkbox('Seasonal decompose', value=True)
         return show_seasonal_decompose
     elif menu_name == 'adfuller':
-        show_adfuller = st.sidebar.checkbox('Dickey-Fuller statistical test')
+        show_adfuller = st.sidebar.checkbox('Dickey-Fuller statistical test', value=True)
         return show_adfuller
     elif menu_name == 'train_predictions':
-        show_train_predict_plot = st.sidebar.checkbox('Train set predictions')
+        show_train_predict_plot = st.sidebar.checkbox('Train set predictions', value=True)
         return show_train_predict_plot
     elif menu_name == 'test_predictions':
-        show_test_predict_plot = st.sidebar.checkbox('Test set forecast')
+        show_test_predict_plot = st.sidebar.checkbox('Test set forecast', value=True)
         return show_test_predict_plot
     elif menu_name == 'feature_target':
-        data_frequency = st.sidebar.selectbox('What is the FREQUENCY of your data? ', ['Hourly', 'Daily', 'Monthly', 'Quarterly', 'Yearly'], 1)
+        data_frequency = st.sidebar.selectbox('What is the FREQUENCY of your data? ', ['Select a frequency', 'Hourly', 'Daily', 'Monthly', 'Quarterly', 'Yearly'], 0)
+        
+        # If the frequency do not select a frequency for the dataset, it will raise an error
+        if data_frequency == 'Select a frequency':
+            # Hiding traceback in order to only show the error message
+            sys.tracebacklimit = 0
+            raise ValueError('Please, select the FREQUENCY for your data')
+        
+        # Show traceback error
+        sys.tracebacklimit = None
+
         st.sidebar.markdown('### Choosing columns')
         ds_column = st.sidebar.selectbox('Which one is your DATE column?', df.columns, 0)
         y = st.sidebar.selectbox('Which column you want to PREDICT?', df.columns, 1)
@@ -50,13 +61,13 @@ def sidebar_menus(menu_name, test_set_size=None, seasonality=None, terms=(0, 0, 
     elif menu_name == 'terms':
         st.sidebar.markdown('### Model parameters')
         st.sidebar.text('Terms for (p, d, q)x(P, D, Q)s')
-        p = st.sidebar.slider('p (AR)', 0, 30, terms[0])
-        d = st.sidebar.slider('d (I)', 0, 3, terms[1])
-        q = st.sidebar.slider('q (MA)', 0, 30, terms[2])
-        P = st.sidebar.slider('P (Seasonal AR)', 0, 30, terms[3])
-        D = st.sidebar.slider('D (Amount of seasonal difference)', 0, 3, terms[4])
-        Q = st.sidebar.slider('Q (Seasonal MA)', 0, 30, terms[5])
-        s = st.sidebar.slider('s (Seasonal frequency)', 0, 30, terms[6])
+        p = st.sidebar.slider('p (AR)', 0, 30, min([terms[0], 30]))
+        d = st.sidebar.slider('d (I)', 0, 3, min([terms[1], 3]))
+        q = st.sidebar.slider('q (MA)', 0, 30, min([terms[2], 30]))
+        P = st.sidebar.slider('P (Seasonal AR)', 0, 30, min([terms[3], 30]))
+        D = st.sidebar.slider('D (Amount of seasonal difference)', 0, 3, min([terms[4], 3]))
+        Q = st.sidebar.slider('Q (Seasonal MA)', 0, 30, min([terms[5], 30]))
+        s = st.sidebar.slider('s (Seasonal frequency)', 0, 30, min([terms[6], 30]))
         
         st.sidebar.markdown('# Forecast periods')
         periods_to_forecast = st.sidebar.slider('How many periods to forecast?', 1, int(len(df.iloc[:-test_set_size])/3), int(seasonality/2))

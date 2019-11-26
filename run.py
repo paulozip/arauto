@@ -103,6 +103,7 @@ st.markdown('**Suggested parameters for your model**: {}x{}{}'.format((p, d, q),
 
 st.title('Time to train!')
 st.write('Select the terms on the side bar and click "Do your Magic!" button')
+
 try:
     p, d, q, P, D, Q, s, train_model, periods_to_forecast, execute_grid_search = sidebar_menus('terms', test_set_size, seasonality, (p, d, q, P, D, Q, seasonality), df=ts)
 except ValueError:

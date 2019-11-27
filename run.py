@@ -24,7 +24,7 @@ from transform_time_series import transform_time_series
 pd.set_option('display.float_format', lambda x: '%.3f' % x) # Granting that pandas won't use scientific notation for floating fields
 
 description =   '''
-                **Alchemy** is an open-source project that will help you to forecast the future from historical data. 
+                **Arauto** is an open-source project that will help you to forecast the future from historical data. 
                 It uses statiscal models to give you accurated predictions for time series data, which is helpful for 
                 financial data, network traffic, sales, and much more.
                 '''

@@ -1,18 +1,18 @@
 Installation
 ============
 
-Alchemy can be used in three different ways:
+Arauto can be used in three different ways:
 
 Web
 ^^^
-| If you are just curious about what you can do with Alchemy, `you can refer to this website <https://project-alchemy.herokuapp.com>`_.
-| This version contains some example datasets that you can use to check how Alchemy works.
+| If you are just curious about what you can do with Arauto, `you can refer to this website <https://project-arauto.herokuapp.com>`_.
+| This version contains some example datasets that you can use to check how Arauto works.
 
 **Please note that this version is a Heroku's free tier instance**. Due to high traffic, you may experience some poor performance
 
 Docker
 ^^^^^^
-Run the following commands to use Alchemy with Docker (requires **Docker and Docker-compose**)
+Run the following commands to use Arauto with Docker (requires **Docker and Docker-compose**)
 
 .. code-block:: bash
 
@@ -26,12 +26,12 @@ Local installation
 .. code-block:: bash
 
     # Clone the repository
-    git clone https://github.com/paulozip/alchemy.git
-    cd alchemy
+    git clone https://github.com/paulozip/arauto.git
+    cd arauto
 
     # If you're using Anaconda
-    conda create --name alchemy_env
-    conda activate alchemy_env
+    conda create --name arauto_env
+    conda activate arauto_env
 
     # Install dependencies
     pip install requirements.txt

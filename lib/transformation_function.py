@@ -57,7 +57,7 @@ class timeSeriesTransformer:
                 This value informs what transformation function was used on the time series. If Logarithm was used, returns numpy.log,
                 otherwise, returns a lambda function 
             test_stationarity_code (str): the code that was used on this transformation. This is used in future to generate the code
-                for the user on Alchemy .
+                for the user on Arauto .
             seasonality (int): the amount of seasonality terms
         '''
 
@@ -90,7 +90,7 @@ class timeSeriesTransformer:
                 This value informs what transformation function was used on the time series. If Logarithm was used, returns numpy.log,
                 otherwise, returns a lambda function 
             test_stationarity_code (str): the code that was used on this transformation. This is used in future to generate the code
-                for the user on Alchemy .
+                for the user on Arauto .
             seasonality (int): the amount of seasonality terms
         '''
 
@@ -126,7 +126,7 @@ class timeSeriesTransformer:
                 This value informs what transformation function was used on the time series. If Logarithm was used, returns numpy.log,
                 otherwise, returns a lambda function 
             test_stationarity_code (str): the code that was used on this transformation. This is used in future to generate the code
-                for the user on Alchemy .
+                for the user on Arauto .
             seasonality (int): the amount of seasonality terms
         '''
 
@@ -164,7 +164,7 @@ class timeSeriesTransformer:
                 This value informs what transformation function was used on the time series. If Logarithm was used, returns numpy.log,
                 otherwise, returns a lambda function 
             test_stationarity_code (str): the code that was used on this transformation. This is used in future to generate the code
-                for the user on Alchemy .
+                for the user on Arauto .
             seasonality (int): the amount of seasonality terms
         '''
 
@@ -201,7 +201,7 @@ class timeSeriesTransformer:
                 This value informs what transformation function was used on the time series. If Logarithm was used, returns numpy.log,
                 otherwise, returns a lambda function 
             test_stationarity_code (str): the code that was used on this transformation. This is used in future to generate the code
-                for the user on Alchemy .
+                for the user on Arauto .
             seasonality (int): the amount of seasonality terms
         '''
 
@@ -239,7 +239,7 @@ class timeSeriesTransformer:
                 This value informs what transformation function was used on the time series. If Logarithm was used, returns numpy.log,
                 otherwise, returns a lambda function 
             test_stationarity_code (str): the code that was used on this transformation. This is used in future to generate the code
-                for the user on Alchemy .
+                for the user on Arauto .
             seasonality (int): the amount of seasonality terms
         '''
 

@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>How to use Alchemy &mdash; Alchemy 0.1.0 documentation</title>
+    <title>How to use Arauto &mdash; Arauto 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Alchemy 0.1.0 documentation" href="index.html" />
+    <link rel="top" title="Arauto 0.1.0 documentation" href="index.html" />
     <link rel="next" title="How to upload your dataset" href="upload_data.html" />
     <link rel="prev" title="Installation" href="installation.html" /> 
   </head>
@@ -42,7 +42,7 @@
         <li class="right" >
           <a href="installation.html" title="Installation"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Alchemy 0.1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Arauto 0.1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -51,13 +51,13 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="how-to-use-alchemy">
-<h1>How to use Alchemy<a class="headerlink" href="#how-to-use-alchemy" title="Permalink to this headline">¶</a></h1>
-<p>Alchemy was built to be as intuitive as possible. It offers an interface that simulates the line of thinking of analysing and training a model for forecasting. This tutorial will guide you through all the process, starting by the top menus.</p>
+  <div class="section" id="how-to-use-arauto">
+<h1>How to use Arauto<a class="headerlink" href="#how-to-use-arauto" title="Permalink to this headline">¶</a></h1>
+<p>Arauto was built to be as intuitive as possible. It offers an interface that simulates the line of thinking of analysing and training a model for forecasting. This tutorial will guide you through all the process, starting by the top menus.</p>
 <div class="section" id="your-data-menu">
 <h2>Your data menu<a class="headerlink" href="#your-data-menu" title="Permalink to this headline">¶</a></h2>
-<img alt="_images/alchemy_your_data_menu.gif" src="_images/alchemy_your_data_menu.gif" />
-<p><strong>This is where you will pick a file for Alchemy to analyse and model</strong>. You can play with some toy datasets or you can <a class="reference external" href="upload_data.html">upload your own dataset</a> using the REST API. <strong>You will also select the frequency of your data</strong>. If your data was collected in a daily basis, select <strong>Daily</strong>, if it was collected in a monthly basis, select <strong>Monthly</strong>. This is an important step since <strong>Alchemy will use this field to understand the seasonality of the time series</strong>, and apply different techniques to find the best model.</p>
+<img alt="_images/arauto_your_data_menu.gif" src="_images/arauto_your_data_menu.gif" />
+<p><strong>This is where you will pick a file for Arauto to analyse and model</strong>. You can play with some toy datasets or you can <a class="reference external" href="upload_data.html">upload your own dataset</a> using the REST API. <strong>You will also select the frequency of your data</strong>. If your data was collected in a daily basis, select <strong>Daily</strong>, if it was collected in a monthly basis, select <strong>Monthly</strong>. This is an important step since <strong>Arauto will use this field to understand the seasonality of the time series</strong>, and apply different techniques to find the best model.</p>
 <p><strong>Fields</strong></p>
 <ul class="simple">
 <li><strong>Select a file</strong>: an CSV, TXT, Excel, or delimited file.</li>
@@ -66,8 +66,8 @@
 </div>
 <div class="section" id="choosing-columns-menu">
 <h2>Choosing columns menu<a class="headerlink" href="#choosing-columns-menu" title="Permalink to this headline">¶</a></h2>
-<img alt="_images/alchemy_choosing_columns_menu.gif" src="_images/alchemy_choosing_columns_menu.gif" />
-<p>This is step is composed by 4 fields that will instruct Alchemy which columns to use when training the model. In this step you can select <strong>exogenous variables, what are nothing but columns that will help the model to give different ways for your predictions</strong>. For example:</p>
+<img alt="_images/arauto_choosing_columns_menu.gif" src="_images/arauto_choosing_columns_menu.gif" />
+<p>This is step is composed by 4 fields that will instruct Arauto which columns to use when training the model. In this step you can select <strong>exogenous variables, what are nothing but columns that will help the model to give different ways for your predictions</strong>. For example:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="29%" />
@@ -101,49 +101,49 @@
 </tr>
 </tbody>
 </table>
-<p>Let&#8217;s say that you are predicting your company&#8217;s daily sales, and in the Christmas period the sales go down. You can use a column called <tt class="code docutils literal"><span class="pre">is_christmas_period</span></tt>, where you place <tt class="code docutils literal"><span class="pre">1</span></tt> for rows (days) on your dataset that was collected in christmas period. Alchemy will try to use columns like this to enhance the predictions.</p>
+<p>Let&#8217;s say that you are predicting your company&#8217;s daily sales, and in the Christmas period the sales go down. You can use a column called <tt class="code docutils literal"><span class="pre">is_christmas_period</span></tt>, where you place <tt class="code docutils literal"><span class="pre">1</span></tt> for rows (days) on your dataset that was collected in christmas period. Arauto will try to use columns like this to enhance the predictions.</p>
 <p><strong>Fields</strong></p>
 <ul class="simple">
 <li><strong>Which one is your DATE column?</strong>: the column used to identify the time point where the data was collected.</li>
 <li><strong>Which column you want to PREDICT?</strong>: the column with the values that you are trying to predict. It can be data like total sales, temperature measured, stock prices, and so on.</li>
 <li><strong>Which are your exogenous variables?</strong>: the independent variables (e.g.: <tt class="code docutils literal"><span class="pre">is_christmas_period</span></tt>) that might be important to give different weights to predictions. <strong>By informing exogenous variables will use automatically models that support regressors, e.g. ARIMAX.</strong></li>
-<li><strong>Validation set size</strong>: how many period you want to let for Alchemy validate the model? <strong>It&#8217;s recommended to configure this field with the same amount of periods that you want to forecast</strong>. For example, if your data was collected in a monthly basis, and you want to forecast the next 3 months, let this field with value 3.</li>
+<li><strong>Validation set size</strong>: how many period you want to let for Arauto validate the model? <strong>It&#8217;s recommended to configure this field with the same amount of periods that you want to forecast</strong>. For example, if your data was collected in a monthly basis, and you want to forecast the next 3 months, let this field with value 3.</li>
 </ul>
 </div>
 <div class="section" id="charts-menu">
 <h2>Charts menu<a class="headerlink" href="#charts-menu" title="Permalink to this headline">¶</a></h2>
-<img alt="_images/alchemy_charts_menu.gif" src="_images/alchemy_charts_menu.gif" />
+<img alt="_images/arauto_charts_menu.gif" src="_images/arauto_charts_menu.gif" />
 <p>In this section you can select some charts to appear on the screen. These charts are helpful to understand some steps of the model training, like the distribution data, seasonal decompose and out-of-sample predictions.</p>
 <p><strong>Fields</strong></p>
 <ul class="simple">
 <li><strong>Historical data</strong>: show the absolute distribution of your dataset just like it is. It can be useful to understand your data over time, and identify some interesting points like missing values of unusual scales.</li>
 <li><strong>Seasonal decompose</strong>: show the components of your time series. It returns informations like the time series trending, seasonality, and resid (what remains when you remove trending and seasonality).</li>
-<li><strong>Dickey-Fuller statistical test</strong>: to understand if your time series is stationary (one of the properties that make it possible to forecast data), Alchemy will execute the Augmented Dickey-Fuller test (a.k.a ADF test). By enabling this option, the transformed data with the best ADF test result (based on the lowest statistical result) will be plotted on Alchemy, with its moving average and standard deviation.</li>
+<li><strong>Dickey-Fuller statistical test</strong>: to understand if your time series is stationary (one of the properties that make it possible to forecast data), Arauto will execute the Augmented Dickey-Fuller test (a.k.a ADF test). By enabling this option, the transformed data with the best ADF test result (based on the lowest statistical result) will be plotted on Arauto, with its moving average and standard deviation.</li>
 <li><strong>Train set predictions</strong>: enable this option if you wanna check how your model is predicting the data that it was trained with. Two plots are placed in the figure, one for the observed (real) data (labeled as <tt class="code docutils literal"><span class="pre">y</span></tt>), and the predicted data (labeled as <tt class="code docutils literal"><span class="pre">ŷ</span></tt>).</li>
 <li><strong>Test set predictions</strong>: enable this option if you wanna check the out-of-sample predictions of your model in comparison with unseen data (test set). Two plots are placed in the figure, one for the observed (real) data (labeled as <tt class="code docutils literal"><span class="pre">y</span></tt>), and the predicted data (labeled as <tt class="code docutils literal"><span class="pre">ŷ</span></tt>).</li>
 </ul>
 </div>
 <div class="section" id="force-data-transformation-menu">
 <h2>Force data transformation menu<a class="headerlink" href="#force-data-transformation-menu" title="Permalink to this headline">¶</a></h2>
-<img alt="_images/alchemy_force_data_transformation.gif" src="_images/alchemy_force_data_transformation.gif" />
-<p>For non-stationary time series (that is, for series that doesn&#8217;t have a constant trend and variance over time), Alchemy will find the best transformation technique that will make it stationary, hence, making it possible to model and predict the data. By default, Alchemy will iterate over all the transformation techniques in order to find the best one, but you can force it to used one of your favorite transformations.</p>
-<p>Using the dropdown menu, <strong>you can even select to not use any transformation technique on your data</strong>. After that, Alchemy will execute the Augmented Dickey-Fuller test to check for stationarity. <strong>If the test statistics are not significant, Alchemy will show a warning</strong>. You can continue the process of modeling a time series even with a non-relevant statistical test result, but <strong>the model performance might be badly influenced if you select a weak transformation</strong>.</p>
+<img alt="_images/arauto_force_data_transformation.gif" src="_images/arauto_force_data_transformation.gif" />
+<p>For non-stationary time series (that is, for series that doesn&#8217;t have a constant trend and variance over time), Arauto will find the best transformation technique that will make it stationary, hence, making it possible to model and predict the data. By default, Arauto will iterate over all the transformation techniques in order to find the best one, but you can force it to used one of your favorite transformations.</p>
+<p>Using the dropdown menu, <strong>you can even select to not use any transformation technique on your data</strong>. After that, Arauto will execute the Augmented Dickey-Fuller test to check for stationarity. <strong>If the test statistics are not significant, Arauto will show a warning</strong>. You can continue the process of modeling a time series even with a non-relevant statistical test result, but <strong>the model performance might be badly influenced if you select a weak transformation</strong>.</p>
 <p><strong>Fields</strong>
 There&#8217;s just one field on this menu, that is the Transformation technique, which contains the following functions:</p>
 <ul>
-<li><p class="first"><strong>Choose the best one</strong>: this is the default parameter. <strong>Alchemy will iterate over all the transformation techniques and select the best one</strong>, based on the lowest statistical relevant Augmented Dickey-Fuller test result.</p>
+<li><p class="first"><strong>Choose the best one</strong>: this is the default parameter. <strong>Arauto will iterate over all the transformation techniques and select the best one</strong>, based on the lowest statistical relevant Augmented Dickey-Fuller test result.</p>
 </li>
 <li><p class="first"><strong>No transformation</strong>: <strong>No one transformation will be applied on the time series</strong>. The ADF test will be executed on the absolute series, without transformations.</p>
 </li>
-<li><p class="first"><strong>First Difference</strong>: a First Difference will be applied to the time series. <strong>This transformation is made by substraction the current observation from the previou observation</strong>. For instance, if you have a series collected in a daily basis, the First Difference of today is equal to: (today_value - yesterday_value). <strong>Most of the time series data uses this techniques, which make it stationary</strong>. Alchemy will always execute this technique first.</p>
+<li><p class="first"><strong>First Difference</strong>: a First Difference will be applied to the time series. <strong>This transformation is made by substraction the current observation from the previou observation</strong>. For instance, if you have a series collected in a daily basis, the First Difference of today is equal to: (today_value - yesterday_value). <strong>Most of the time series data uses this techniques, which make it stationary</strong>. Arauto will always execute this technique first.</p>
 </li>
 <li><p class="first"><strong>Log Transformation</strong>: each observation of the series will be log transformed. This is useful when we need to penalize higher values on the time series (which is common when we have outliers in our data). The data is transformed using <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.log1p.html">Numpy&#8217;s Log1p function</a>.</p>
 </li>
-<li><p class="first"><strong>Seasonal Difference</strong>: if your data contains seasonality, a seasonal difference will be applied on your series. <strong>It works similar to First Difference</strong>, but instead of substracting the current observation (t) by the previous observation (t-1), Alchemy will substract it by the (t-s), where s is the seasonal frequency. For instance, if your data was collected in a monthly basis, and it has a yearly seasonality, the Seasonal Difference will be: (t - t-12).</p>
+<li><p class="first"><strong>Seasonal Difference</strong>: if your data contains seasonality, a seasonal difference will be applied on your series. <strong>It works similar to First Difference</strong>, but instead of substracting the current observation (t) by the previous observation (t-1), Arauto will substract it by the (t-s), where s is the seasonal frequency. For instance, if your data was collected in a monthly basis, and it has a yearly seasonality, the Seasonal Difference will be: (t - t-12).</p>
 </li>
-<li><p class="first"><strong>Log First Difference</strong>: this is the first combined transformation that you will see in the dropdown menu. If selected, Alchemy will transform your data using <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.log1p.html">Numpy&#8217;s Log1p function</a> and, <strong>after that, will execute a First Difference transformation (t - t-1)</strong>.</p>
+<li><p class="first"><strong>Log First Difference</strong>: this is the first combined transformation that you will see in the dropdown menu. If selected, Arauto will transform your data using <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.log1p.html">Numpy&#8217;s Log1p function</a> and, <strong>after that, will execute a First Difference transformation (t - t-1)</strong>.</p>
 </li>
-<li><p class="first"><strong>Log Difference + Seasonal Difference</strong>: similar to Log First Difference, Alchemy will execute a log transformation in your time series, followed by a First Difference transformation (t - t-1) and a Seasonal Difference (t - t-s), where s is the seasonal frequency.</p>
+<li><p class="first"><strong>Log Difference + Seasonal Difference</strong>: similar to Log First Difference, Arauto will execute a log transformation in your time series, followed by a First Difference transformation (t - t-1) and a Seasonal Difference (t - t-s), where s is the seasonal frequency.</p>
 </li>
 <li><p class="first"><strong>Custom Difference</strong>: you can even select a custom difference technique for your data. This option will enable two other parameters: <tt class="code docutils literal"><span class="pre">Difference</span> <span class="pre">size</span></tt> and <tt class="code docutils literal"><span class="pre">Seasonal</span> <span class="pre">Difference</span> <span class="pre">size</span></tt>.</p>
 <blockquote>
@@ -154,26 +154,26 @@ There&#8217;s just one field on this menu, that is the Transformation technique,
 </div>
 <div class="section" id="model-parameters-menu">
 <h2>Model parameters menu<a class="headerlink" href="#model-parameters-menu" title="Permalink to this headline">¶</a></h2>
-<img alt="_images/alchemy_model_parameters_menu.gif" src="_images/alchemy_model_parameters_menu.gif" />
-<p>To estimate the right amount of terms to consider for fitting the model, Alchemy will look to the ACF and PACF functions to estimate the terms for AR (p), I (d), MA (q), Seasonal AR (P), Seasonal Difference (D), Seasonal MA (Q). By default, Alchemy will set a recommended amount of terms for each part, but you can freely select different amounts of terms. Please, refer to <a class="reference external" href="how_to_choose_terms.html">How to choose the parameters for the model</a> in order to learn how to select these parameters.</p>
+<img alt="_images/arauto_model_parameters_menu.gif" src="_images/arauto_model_parameters_menu.gif" />
+<p>To estimate the right amount of terms to consider for fitting the model, Arauto will look to the ACF and PACF functions to estimate the terms for AR (p), I (d), MA (q), Seasonal AR (P), Seasonal Difference (D), Seasonal MA (Q). By default, Arauto will set a recommended amount of terms for each part, but you can freely select different amounts of terms. Please, refer to <a class="reference external" href="how_to_choose_terms.html">How to choose the parameters for the model</a> in order to learn how to select these parameters.</p>
 </div>
 <div class="section" id="forecast-periods-menu">
 <h2>Forecast periods menu<a class="headerlink" href="#forecast-periods-menu" title="Permalink to this headline">¶</a></h2>
-<img alt="_images/alchemy_forecast_period_menu.gif" src="_images/alchemy_forecast_period_menu.gif" />
-<p>This is the last step of Alchemy. Here, you can select how much future periods (days, months, years) you want to forecast.</p>
+<img alt="_images/arauto_forecast_period_menu.gif" src="_images/arauto_forecast_period_menu.gif" />
+<p>This is the last step of Arauto. Here, you can select how much future periods (days, months, years) you want to forecast.</p>
 <p><strong>Fields</strong></p>
 <ul class="simple">
-<li><strong>How many periods to forecast?</strong>: how much period should Alchemy forecast?</li>
-<li><strong>Find the best parameters for me</strong>: if selected, Alchemy will execute a grid search process to find the best amount of terms for, p, d, q, and so on. <strong>This is a high computational process, since Alchemy will iterate of different amounts of parameters to fit the best model. Be sure your server has enough memory for this process</strong>.</li>
+<li><strong>How many periods to forecast?</strong>: how much period should Arauto forecast?</li>
+<li><strong>Find the best parameters for me</strong>: if selected, Arauto will execute a grid search process to find the best amount of terms for, p, d, q, and so on. <strong>This is a high computational process, since Arauto will iterate of different amounts of parameters to fit the best model. Be sure your server has enough memory for this process</strong>.</li>
 <li><strong>Do your Magic!</strong>: once you have all set up, click this button to train your model.</li>
 </ul>
 </div>
 <div class="section" id="what-happens-next">
 <h2>What happens next?<a class="headerlink" href="#what-happens-next" title="Permalink to this headline">¶</a></h2>
 <p>Once your model was trained, <strong>you can check your forecast at the end of you screen</strong>. The out-of-sample forecasts are displayed on the screen using <a class="reference external" href="https://plot.ly/python/">Plotly</a>, you can interate with the chart and export it as a PNG image.</p>
-<img alt="_images/alchemy_forecast_plot.gif" src="_images/alchemy_forecast_plot.gif" style="width: 800px;" />
-<p>Besides that, Alchemy will give the code used to transform the data, generate the charts, train the model, and execute the forecasting. You can copy this code and use it wherever you want.</p>
-<img alt="_images/alchemy_copy_generated_code.gif" src="_images/alchemy_copy_generated_code.gif" style="width: 800px;" />
+<img alt="_images/arauto_forecast_plot.gif" src="_images/arauto_forecast_plot.gif" style="width: 800px;" />
+<p>Besides that, Arauto will give the code used to transform the data, generate the charts, train the model, and execute the forecasting. You can copy this code and use it wherever you want.</p>
+<img alt="_images/arauto_copy_generated_code.gif" src="_images/arauto_copy_generated_code.gif" style="width: 800px;" />
 </div>
 </div>
 
@@ -185,7 +185,7 @@ There&#8217;s just one field on this menu, that is the Transformation technique,
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">How to use Alchemy</a><ul>
+<li><a class="reference internal" href="#">How to use Arauto</a><ul>
 <li><a class="reference internal" href="#your-data-menu">Your data menu</a></li>
 <li><a class="reference internal" href="#choosing-columns-menu">Choosing columns menu</a></li>
 <li><a class="reference internal" href="#charts-menu">Charts menu</a></li>
@@ -237,7 +237,7 @@ There&#8217;s just one field on this menu, that is the Transformation technique,
         <li class="right" >
           <a href="installation.html" title="Installation"
              >previous</a> |</li>
-        <li><a href="index.html">Alchemy 0.1.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Arauto 0.1.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

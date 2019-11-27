@@ -1,36 +1,36 @@
 version: "3"
 
 services:
-  alchemy:
+  arauto:
     build:
         context: ./
         dockerfile: Dockerfile
-    image: alchemy:latest
+    image: arauto:latest
     command: streamlit run run.py
-    container_name: alchemy_main
+    container_name: arauto_main
     volumes:
       - app-volume:/app
     networks:
-      - alchemy_network
+      - arauto_network
     expose:
       - "8501"
     ports:
       - "8501:8501"
 
-  alchemy_api:
-    image: alchemy:latest
+  arauto_api:
+    image: arauto:latest
     command: python3 main.py
-    container_name: alchemy_api
+    container_name: arauto_api
     volumes:
       - app-volume:/app
     networks:
-      - alchemy_network
+      - arauto_network
     expose:
       - "5000"
     ports:
       - "5000:5000"
 networks:
-  alchemy_network:
+  arauto_network:
     driver: bridge
 volumes:
      app-volume:

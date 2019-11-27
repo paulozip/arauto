@@ -1,13 +1,13 @@
-[![Documentation Status](https://readthedocs.org/projects/python-alchemy/badge/?version=latest)](https://python-alchemy.readthedocs.io/en/latest/?badge=latest)
-![](https://img.shields.io/github/languages/top/paulozip/alchemy)
-![](https://img.shields.io/github/issues-raw/paulozip/alchemy?color=%4cd137)
-![](https://img.shields.io/github/issues-closed/paulozip/alchemy?color=%238e44ad)
+[![Documentation Status](https://readthedocs.org/projects/python-arauto/badge/?version=latest)](https://python-arauto.readthedocs.io/en/latest/?badge=latest)
+![](https://img.shields.io/github/languages/top/paulozip/arauto)
+![](https://img.shields.io/github/issues-raw/paulozip/arauto?color=%4cd137)
+![](https://img.shields.io/github/issues-closed/paulozip/arauto?color=%238e44ad)
 
 ![](img/logo.png)
-# Alchemy
+# Arauto
 *A interactive tool for time series experimentation and forecasting*
 
-Alchemy is an open-source framework that aims to make it **easier to model and experiment time series analysis and forecasting**. Alchemy offers a intuitive and interactive interface to explore different parameters for models using Autoregressive models (AR, ARMA, ARIMA, SARIMA, ARIMAX, and SARIMAX). More estimators and algorithms are on the way.
+Arauto is an open-source framework that aims to make it **easier to model and experiment time series analysis and forecasting**. Arauto offers a intuitive and interactive interface to explore different parameters for models using Autoregressive models (AR, ARMA, ARIMA, SARIMA, ARIMAX, and SARIMAX). More estimators and algorithms are on the way.
 
 ## Features
 
@@ -16,20 +16,20 @@ Alchemy is an open-source framework that aims to make it **easier to model and e
 * Stationarity Test using **Augmented Dickey-Fuller** test
 * Customization of data transforming for stationarity: you can use from first difference to seasonal log to transform your data
 * **ACF** (Autocorrelation function) and **PACF** (Parcial correlation function) for terms estimation
-* Customize ARIMA terms or **let Alchemy choose the best for you** based on your data
+* Customize ARIMA terms or **let Arauto choose the best for you** based on your data
 * **Grid search** feature for parameters tuning
-* Code generation: at the end of the process, Alchemy returns the code used to transform the data and train the model
+* Code generation: at the end of the process, Arauto returns the code used to transform the data and train the model
 
 # Getting started
-Alchemy can be used in three different ways:
+Arauto can be used in three different ways:
 
 ## Web
-If you are just curious about what you can do with Alchemy, **[you can refer to this website](https://projectalchemy.herokuapp.com)**. This version contains some example datasets that you can use to check how Alchemy works. 
+If you are just curious about what you can do with Arauto, **[you can refer to this website](https://projectarauto.herokuapp.com)**. This version contains some example datasets that you can use to check how Arauto works. 
 
-**IMPORTANT: please be aware that this web version is a lightweight version of Alchemy, with low computational power and with some features disable, since we are using a free-tier version of Heroku instance.**. To understand the full potential of Alchemy, use one of the installations version below.
+**IMPORTANT: please be aware that this web version is a lightweight version of Arauto, with low computational power and with some features disable, since we are using a free-tier version of Heroku instance.**. To understand the full potential of Arauto, use one of the installations version below.
 
 ## Docker
-Run the following commands to use Alchemy with Docker (requires **Docker and Docker-compose**):
+Run the following commands to use Arauto with Docker (requires **Docker and Docker-compose**):
 
 ```bash
 # Run the docker compose
@@ -41,12 +41,12 @@ docker-compose up --build
 
 ```bash
 # Clone the repository
-git clone https://github.com/paulozip/alchemy.git
-cd alchemy
+git clone https://github.com/paulozip/arauto.git
+cd arauto
 
 # If you're using Anaconda
-conda create --name alchemy_env
-conda activate alchemy_env
+conda create --name arauto_env
+conda activate arauto_env
 
 # Install dependencies
 pip install requirements.txt
@@ -55,7 +55,7 @@ pip install requirements.txt
 streamlit run run.py
 ```
 # Upload your data
-A [Upload file support will be added to Alchemy](https://github.com/paulozip/alchemy/issues/4), but you can use the Alchemy REST API to send your dataset. Here's an example of how you can use it using cURL:
+A [Upload file support will be added to Arauto](https://github.com/paulozip/arauto/issues/4), but you can use the Arauto REST API to send your dataset. Here's an example of how you can use it using cURL:
 
 ```bash
 curl -X POST \
@@ -73,12 +73,12 @@ curl -X POST \
 ```
 
 # Your data, your code
-At the end of the process, Alchemy will give you the source code used to make the exploration and training. Use this code to adapt your work and make modifications at will:
+At the end of the process, Arauto will give you the source code used to make the exploration and training. Use this code to adapt your work and make modifications at will:
 
-![](img/alchemy_your_code.png)
+![](img/arauto_your_code.png)
 
 # Next steps
-Currently, this is an one-person project, but help is always welcome. **[You can suggest new ideas and features for us in our issue tracking](https://github.com/paulozip/alchemy/issues). Requests will be prioritized by thumbs up emoji** (👍).
+Currently, this is an one-person project, but help is always welcome. **[You can suggest new ideas and features for us in our issue tracking](https://github.com/paulozip/arauto/issues). Requests will be prioritized by thumbs up emoji** (👍).
 
 **If you want to collaborate with this project**, all you need to do is fork this repository, make new additions and modifications, and open a PR. I will validate it ASAP. 
 

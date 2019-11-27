@@ -24,7 +24,7 @@ Arauto is an open-source framework that aims to make it **easier to model and ex
 Arauto can be used in three different ways:
 
 ## Web
-If you are just curious about what you can do with Arauto, **[you can refer to this website](https://projectarauto.herokuapp.com)**. This version contains some example datasets that you can use to check how Arauto works. 
+If you are just curious about what you can do with Arauto, **[you can refer to this website](https://projectarauto.herokuapp.com)**. This version contains some toy datasets that you can use to check how Arauto works. 
 
 **IMPORTANT: please be aware that this web version is a lightweight version of Arauto, with low computational power and with some features disable, since we are using a free-tier version of Heroku instance.**. To understand the full potential of Arauto, use one of the installations version below.
 
@@ -54,6 +54,10 @@ pip install requirements.txt
 # Run Streamlit
 streamlit run run.py
 ```
+
+# How to use
+[Please refer to our documentation](https://arauto.readthedocs.io/en/latest/how_to_use.html) to check the tutorial that we prepared to help you to build your own models.
+
 # Upload your data
 A [Upload file support will be added to Arauto](https://github.com/paulozip/arauto/issues/4), but you can use the Arauto REST API to send your dataset. Here's an example of how you can use it using cURL:
 

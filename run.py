@@ -170,8 +170,9 @@ if train_model:
         p, d, q, P, D, Q, s = grid_search_arima(train_set, exog_train,  range(p+2), range(q+2), range(P+2), range(Q+2), d=d, D=D, s=s)
         
     # Creating final model
-    st.warning('Training model with entire dataset. Please wait.')
-    final_model = train_ts_model(transformation_function(ts), p, d, q, P, D, Q, s, exog_variables=exog_variables, quiet=True)
+    with st.spinner('Training model with entire dataset. Please wait.'):
+        final_model = train_ts_model(transformation_function(ts), p, d, q, P, D, Q, s, exog_variables=exog_variables, quiet=True)
+    st.success('Done!')
     
     # Forecasting data
     st.markdown('# Out-of-sample Forecast')

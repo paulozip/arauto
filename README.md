@@ -1,4 +1,4 @@
-[![Documentation Status](https://readthedocs.org/projects/python-arauto/badge/?version=latest)](https://python-arauto.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/arauto/badge/?version=latest)](https://arauto.readthedocs.io/en/latest/?badge=latest)
 ![](https://img.shields.io/github/languages/top/paulozip/arauto)
 ![](https://img.shields.io/github/issues-raw/paulozip/arauto?color=%4cd137)
 ![](https://img.shields.io/github/issues-closed/paulozip/arauto?color=%238e44ad)

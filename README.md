@@ -77,7 +77,7 @@ curl -X POST \
 ```
 
 # Your data, your code
-At the end of the process, Arauto will give you the source code used to make the exploration and training. Use this code to adapt your work and make modifications at will:
+At the end of the process, Arauto will give you the source code used to make the exploration and training. Use this code to adapt your work and make modifications at will. **PROTIP: Arauto is also a useful tool to generate boilerplate code for time series**.
 
 ![](img/arauto_your_code.png)
 

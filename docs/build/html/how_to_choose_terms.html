@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>How to choose the parameters for the model (under construction) &mdash; Arauto 0.1.0 documentation</title>
+    <title>How to choose the parameters for the model &mdash; Arauto 0.1.0 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -51,9 +51,50 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="how-to-choose-the-parameters-for-the-model-under-construction">
-<h1>How to choose the parameters for the model (under construction)<a class="headerlink" href="#how-to-choose-the-parameters-for-the-model-under-construction" title="Permalink to this headline">¶</a></h1>
-<p>This page is under construction.</p>
+  <div class="section" id="how-to-choose-the-parameters-for-the-model">
+<h1>How to choose the parameters for the model<a class="headerlink" href="#how-to-choose-the-parameters-for-the-model" title="Permalink to this headline">¶</a></h1>
+<p>Something it might be dificult to estimate the amount of terms that your model needs, chiefly when it comes to ARIMA. In this part, you be shown to some types of analysis that you can do to estimate the parameters of your model.</p>
+<p><strong>Important</strong>: by default, Arauto will try to find the best parameters for ARIMA or SARIMA for you. The recommended values will be shown below the ACF and PACF plots, but you also can explore different parameters.</p>
+<div class="section" id="the-acf-and-pacf-function">
+<h2>The ACF and PACF function<a class="headerlink" href="#the-acf-and-pacf-function" title="Permalink to this headline">¶</a></h2>
+<p>One good and intuitive approach to estimate the terms for seasonal and non-seasonal autoregressive models is to look at autocorrelation function and partial autocorrelation function. We are not going too deep in theorical concepts around these functions, but there are great resources around the web (see References section below). Basically, <strong>the autocorrelation function will show the relationship between a point in time and lagged values</strong>.</p>
+<p>For instance, imagine that we have a non-null time series collected in a daily basis. An autocorrelation of lag 1 will measure the relationship between the today&#8217;s value (Yt) and yesterday&#8217;s value (Yt-1). The values of the autocorrelation function and partial autocorrelation function can help us to estimate AR (p) terms, and MA (q) terms, respectively.</p>
+<p>To estimate the correct amount of terms, <strong>we must use a stationary series, which is basically a time series where there is a constant mean and variance over time</strong>. Arauto provides some resources to make a time series stationary, like log transformations, first differences, and so on (you may want to check <a class="reference external" href="how_to_use.html">the How to Use Arauto</a> section to know more about transformation functions). Also, <strong>Arauto automatically generate plots for autocorrelation function (ACF) and partial autocorrelation function (PACF)</strong>, making it easier to interpret and identify AR and MA terms.</p>
+<p><strong>Example</strong></p>
+<p>Let&#8217;s use an example to understand more about ACF and PACF. Here is the plots for the Monthly Wine Sales dataset on Arauto, which is stationary after a log difference transformation.</p>
+<img alt="_images/arauto_acf_pacf.png" src="_images/arauto_acf_pacf.png" />
+</div>
+<div class="section" id="estimating-ar-terms">
+<h2>Estimating AR terms<a class="headerlink" href="#estimating-ar-terms" title="Permalink to this headline">¶</a></h2>
+<p>The lollipop plot that you see above is the ACF and PACF results. <strong>To estimate the amount of AR terms, you need to look at the PACF plot</strong>. First, ignore the value at lag 0. It will always show a perfect correlation, since we are estimating the correlation between today&#8217;s value with itself. Note that there is a blue area in the plot, representing the confidence interval. To estimate how much AR terms you should use, <strong>start counting how many &#8220;lollipop&#8221; are above or below the confidence interval before the next one enter the blue area</strong>.</p>
+<p>So, <strong>looking at the PACF plot above, we can estimate to use 3 AR terms for our model</strong>, since lag 1, 2 and 3 are out of the confidence interval, and lag 4 is in the blue area.</p>
+</div>
+<div class="section" id="estimating-i-terms">
+<h2>Estimating I terms<a class="headerlink" href="#estimating-i-terms" title="Permalink to this headline">¶</a></h2>
+<p>This is an easy part. <strong>All you need to do to estimate the amount of I (d) terms is to know how many Differencing was used to make the series stationary</strong>. For example, <strong>if you used log difference or first difference to transform a time series, the amount of I terms will be 1</strong>, since Arauto takes the difference between the actual value (e.g. today&#8217;s value) and 1 previous value (e.g. yesterday&#8217;s value).</p>
+</div>
+<div class="section" id="estimating-ma-terms">
+<h2>Estimating MA terms<a class="headerlink" href="#estimating-ma-terms" title="Permalink to this headline">¶</a></h2>
+<p>Just like the PACF function, <strong>to estimate the amount of MA terms, this time you will look at ACF plot</strong>. The same logic is applied here: how much lollipops are above or below the confidence interval before the next lollipop enters the blue area?</p>
+<p>In our example, <strong>we can estimate 2 MA terms, since we have lag 1 and 2 out of the confidence interval</strong>.</p>
+</div>
+<div class="section" id="estimating-seasonal-ar-terms">
+<h2>Estimating Seasonal AR terms<a class="headerlink" href="#estimating-seasonal-ar-terms" title="Permalink to this headline">¶</a></h2>
+<p>If your data has seasonality and you want to use a Seasonal ARIMA model, you need to inform the seasonal terms for AR, I, and MA. <strong>The process is quite similar to non-seasonal AR, and you will still using the ACF and PACF function for that</strong>. To estimate the amount of AR terms, you will look one more time to the PACF function. <strong>Now, instead of count how many lollipops are out of the confidence interval, you will count how many seasonal lollipops are out</strong>.</p>
+<p>For example, if your data was collected in a monthly basis and you have yearly seasonality, you need to check if the &#8220;lollipop&#8221; at lag 12 is out of the confidence interval area. <strong>In case of positive result, you need to add 1 term for Seasonal AR. In the plot above, we can see that the value at lag 12 is out of the blue area of the confidence interval</strong>, so we will add 1 terms for seasonal AR (SAR).</p>
+</div>
+<div class="section" id="estimating-seasonal-i-terms">
+<h2>Estimating Seasonal I terms<a class="headerlink" href="#estimating-seasonal-i-terms" title="Permalink to this headline">¶</a></h2>
+<p>The same logic of estimating non-seasonal differencing is applied here. If you used seasonal differencing to make the time series stationary (e.g. the actual value (Yt) substracted by 12 previous month (Yt-12)), you will add 1 term to seasonal differencing. In our example, <strong>we just used log differencing to make the time series stationary</strong>, we do not used seasonal differencing as well. So, <strong>we will not add 1 terms for seasonal differencing</strong>.</p>
+</div>
+<div class="section" id="estimating-seasonal-ma-terms">
+<h2>Estimating Seasonal MA terms<a class="headerlink" href="#estimating-seasonal-ma-terms" title="Permalink to this headline">¶</a></h2>
+<p>For seasonal moving average (SMA), we will be looking at the ACF plot and use the same logic of estimating SAR terms. For our example, <strong>we will be using not 1, but 2 terms for SMA. Why? Because we have significant correlation at lag 12 and lag 24</strong>.</p>
+</div>
+<div class="section" id="final-considerations">
+<h2>Final considerations<a class="headerlink" href="#final-considerations" title="Permalink to this headline">¶</a></h2>
+<p>At the end of this process, you will have all the terms needed to build your model. Below the ACF and PACF plot, Arauto will recommend the same amount of terms that we identified in this tutorial for p, d, q, P, D, and Q: (3, 1, 2)x(1, 0, 2). If you want to let Arauto optimize these parameters, you can select the option <strong>&#8220;Find the best parameters for me&#8221;</strong> and Arauto will apply Grid Search to your model. Keep in mind that this is high computational step, be sure that you have enough resources for this process.</p>
+</div>
 </div>
 
 
@@ -62,6 +103,21 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">How to choose the parameters for the model</a><ul>
+<li><a class="reference internal" href="#the-acf-and-pacf-function">The ACF and PACF function</a></li>
+<li><a class="reference internal" href="#estimating-ar-terms">Estimating AR terms</a></li>
+<li><a class="reference internal" href="#estimating-i-terms">Estimating I terms</a></li>
+<li><a class="reference internal" href="#estimating-ma-terms">Estimating MA terms</a></li>
+<li><a class="reference internal" href="#estimating-seasonal-ar-terms">Estimating Seasonal AR terms</a></li>
+<li><a class="reference internal" href="#estimating-seasonal-i-terms">Estimating Seasonal I terms</a></li>
+<li><a class="reference internal" href="#estimating-seasonal-ma-terms">Estimating Seasonal MA terms</a></li>
+<li><a class="reference internal" href="#final-considerations">Final considerations</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="upload_data.html"
                         title="previous chapter">How to upload your dataset</a></p>

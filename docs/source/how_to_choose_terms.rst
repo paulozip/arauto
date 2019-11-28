@@ -18,7 +18,7 @@ To estimate the correct amount of terms, **we must use a stationary series, whic
 
 Let's use an example to understand more about ACF and PACF. Here is the plots for the Monthly Wine Sales dataset on Arauto, which is stationary after a log difference transformation.
 
-.. image:: ../../img/arauto_acf_pacf.gif
+.. image:: ../../img/arauto_acf_pacf.png
 
 Estimating AR terms
 ^^^^^^^^^^^^^^^^^^^

@@ -135,7 +135,7 @@ if train_model:
         exog_test = exog_variables.iloc[-test_set_size:]
 
     train_set = transformation_function(ts.iloc[:-test_set_size])
-
+    
     test_set = transformation_function(ts.iloc[-test_set_size:])
     
     try:
@@ -169,13 +169,13 @@ if train_model:
                     ''')
         p, d, q, P, D, Q, s = grid_search_arima(train_set, exog_train,  range(p+2), range(q+2), range(P+2), range(Q+2), d=d, D=D, s=s)
         
+    # Forecasting data
+    st.markdown('# Out-of-sample Forecast')
+    
     # Creating final model
     with st.spinner('Training model with entire dataset. Please wait.'):
         final_model = train_ts_model(transformation_function(ts), p, d, q, P, D, Q, s, exog_variables=exog_variables, quiet=True)
     st.success('Done!')
-    
-    # Forecasting data
-    st.markdown('# Out-of-sample Forecast')
     
     if type(exog_variables) == type(pd.DataFrame()):
         st.write('You are using exogenous variables. We can\'t forecast the future since we don\'t have the exogenous variables for future periods. Adapt the code below to use them.' )

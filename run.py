@@ -116,12 +116,11 @@ except ValueError:
 
 # Showing a warning when Grid Search operation is too expensive
 if execute_grid_search:
-    if data_frequency in ['Hourly', 'Daily'] or p >= 5 or q >= 5:
-        warning_grid_search = '''
-                            Apply Grid Search on this dataset with these settings might be computationally expensive. 
-                            Be sure you have enough memory for this operation, otherwise, it will fail
-                            '''
-        st.sidebar.warning(warning_grid_search)
+    warning_grid_search =  '''
+                           This feature is not available for the web version of Arauto. 
+                           Please, install Arauto from our Github repository to have full access.
+                           '''
+    st.sidebar.warning(warning_grid_search)
 
 # If train button has be clicked 
 if train_model:
@@ -160,15 +159,6 @@ if train_model:
     else:
         predict_set(test_set, y, seasonality, transformation_function, model, exog_variables=exog_test, forecast=True, show_train_prediction=show_train_prediction, show_test_prediction=show_test_prediction)
 
-    # Executing Grid Search
-    if execute_grid_search:
-        st.markdown('# Executing Grid Search')
-        st.markdown('''
-                    We\'re going to find the best parameters for your model. This might take some minutes. 
-                    Now it's a good time to grab some coffee.
-                    ''')
-        p, d, q, P, D, Q, s = grid_search_arima(train_set, exog_train,  range(p+2), range(q+2), range(P+2), range(Q+2), d=d, D=D, s=s)
-        
     # Forecasting data
     st.markdown('# Out-of-sample Forecast')
     

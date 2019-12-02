@@ -11,8 +11,8 @@ Arauto is an open-source framework that aims to make it **easier to model and ex
 
 ## Features
 
-* **Support to exogenous regressors** (independent variables)
-* Seasonal decompose that let's you know the **Trend, Seasonality and Resid** of your data
+* **Support for exogenous regressors** (independent variables)
+* Seasonal decompose that lets you know the **Trend, Seasonality, and Resid** of your data
 * Stationarity Test using **Augmented Dickey-Fuller** test
 * Customization of data transforming for stationarity: you can use from first difference to seasonal log to transform your data
 * **ACF** (Autocorrelation function) and **PACF** (Parcial correlation function) for terms estimation

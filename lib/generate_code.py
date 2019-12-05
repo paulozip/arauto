@@ -312,7 +312,16 @@ def generate_code(filename, ds_column, y, test_stationarity_code, test_set_size,
                                                 seasonal_order = ({P}, {D}, {Q}, {s}),
                                                 enforce_invertibility=False)
                 # Fitting model
-                mod = mod.fit()
+                try:
+                    mod = mod.fit()
+                except np.linalg.LinAlgError:
+                    mod = sm.tsa.statespace.SARIMAX(df,
+                                                order = ({p}, {d}, {q}),
+                                                exog = exogenous_variables,
+                                                seasonal_order = ({P}, {D}, {Q}, {s}),
+                                                enforce_invertibility=False,
+                                                initialization='approximate_diffuse')
+                    mod = mod.fit()
                 print(mod.summary())
 
                 ## Uncomment this part to use Grid Search (computational expensive)

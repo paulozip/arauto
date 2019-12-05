@@ -13,7 +13,7 @@ def sidebar_menus(menu_name, test_set_size=None, seasonality=None, terms=(0, 0, 
         df (Pandas DataFrame, optional): a Pandas DataFrame containing some time series data to extract the columns
     '''
     seasonality_dict = {'Hourly': 24, 
-                        'Daily': 30, 
+                        'Daily': 7, 
                         'Monthly': 12, 
                         'Quarterly': 4, 
                         'Yearly': 5}

@@ -31,24 +31,37 @@ def train_ts_model(Y, p, d, q, P, D, Q, s, exog_variables=None, quiet=False):
                         'Creating transmutation circle...',
                         'Wait for it...']
 
-    #if exog_variables != None:
     mod = sm.tsa.statespace.SARIMAX(Y,
                                     order = (p, d, q),
                                     exog=exog_variables,
                                     seasonal_order = (P, D, Q, s),
                                     enforce_invertibility=False
                                     )
-    '''else:
-        mod = sm.tsa.statespace.SARIMAX(Y,
-                                        order = (p, d, q),
-                                        seasonal_order = (P, D, Q, s),
-                                        enforce_invertibility=False
-                                        )'''
     if quiet:
-        results = mod.fit()
+        try:
+            results = mod.fit()
+        except np.linalg.LinAlgError:
+            mod = sm.tsa.statespace.SARIMAX(Y,
+                                    order = (p, d, q),
+                                    exog=exog_variables,
+                                    seasonal_order = (P, D, Q, s),
+                                    enforce_invertibility=False,
+                                    initialization='approximate_diffuse'
+                                    )
+            results = mod.fit()
     else:
         with st.spinner(np.random.choice(waiting_messages)):
-            results = mod.fit()
+            try:
+                results = mod.fit()
+            except np.linalg.LinAlgError:
+                mod = sm.tsa.statespace.SARIMAX(Y,
+                                        order = (p, d, q),
+                                        exog=exog_variables,
+                                        seasonal_order = (P, D, Q, s),
+                                        enforce_invertibility=False,
+                                        initialization='approximate_diffuse'
+                                        )
+                results = mod.fit()
         st.success('Done!')
         
         try:

@@ -86,5 +86,8 @@ Currently, this is an one-person project, but help is always welcome. **[You can
 
 **If you want to collaborate with this project**, all you need to do is fork this repository, make new additions and modifications, and open a PR. I will validate it ASAP. 
 
+# Get updated
+New features will be added to Arauto. If you want to know when a new version arrives, please, **[subscribe to Arauto’s newsletter to get informed about new things](https://6f9c43ce.sibforms.com/serve/MUIEAI8Dq-U5iguZoH4tTXCgd1XsWZ2kDTwXG61HzqOe1smcmeFu1AKhca2lt0WmMOTwn3lGTx9zN1pk-0eo795pAFuq4eWzfH7edyG4Tk6tUsSq6vAwQdYlowk0MDXBSoDKIdsnzjRs_H_i8sjz2rRJDmtjRIW_xUmkUh03sW4qvUf7iaP1sMAlu1fAZ4XkZOi7I6562dzbkFn8)**. We will NOT send spams or share your email. Only content related to Arauto will be sent.
+
 # A big thank you
 This project would not be possible without [Streamlit](https://github.com/streamlit/streamlit): an awesome tool to build ML tools. Please refer to their Github repository to know further, or you can also [check their blog post](https://towardsdatascience.com/coding-ml-tools-like-you-code-ml-models-ddba3357eace)

@@ -5,7 +5,7 @@ Arauto can be used in three different ways:
 
 Web
 ^^^
-| If you are just curious about what you can do with Arauto, `you can refer to this website <https://project-arauto.herokuapp.com>`_.
+| If you are just curious about what you can do with Arauto, `you can refer to this website <https://projectarauto.herokuapp.com>`_.
 | This version contains some example datasets that you can use to check how Arauto works.
 
 **Please note that this version is a Heroku's free tier instance**. Due to high traffic, you may experience some poor performance

@@ -49,7 +49,7 @@ conda create --name arauto_env
 conda activate arauto_env
 
 # Install dependencies
-pip install requirements.txt
+pip install -r requirements.txt
 
 # Run Streamlit
 streamlit run run.py

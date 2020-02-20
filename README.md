@@ -9,6 +9,9 @@
 
 Arauto is an open-source framework that aims to make it **easier to model and experiment time series analysis and forecasting**. Arauto offers a intuitive and interactive interface to explore different parameters for models using Autoregressive models (AR, ARMA, ARIMA, SARIMA, ARIMAX, and SARIMAX). More estimators and algorithms are on the way.
 
+## Blog post about Arauto
+**Arauto was featured on Towards Data Science's** blog on Medium. **[Check it out](https://towardsdatascience.com/introducing-arauto-an-interactive-tool-for-time-series-forecasting-14b3e36b5f81)**.
+
 ## Features
 
 * **Support for exogenous regressors** (independent variables)

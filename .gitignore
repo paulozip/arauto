@@ -1,2 +1,4 @@
 *.pyc
 /lib/*.pyc
+.vscode
+.DS_Store

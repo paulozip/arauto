@@ -58,7 +58,7 @@ def generate_code(filename, ds_column, y, test_stationarity_code, test_set_size,
 
                     decomposition = seasonal_decompose(ts)
 
-                    decomposition.seasonal.plot(ax=ax1, title='Sazonality')
+                    decomposition.seasonal.plot(ax=ax1, title='Seasonality')
                     plt.legend('')
 
                     decomposition.trend.plot(ax=ax2, title='Trending')

@@ -26,9 +26,9 @@ def decompose_series(ts):
                         '''
         raise AttributeError(error_message)
 
-    decomposition.seasonal.plot(color='green', ax=ax1, title='Sazonality')
+    decomposition.seasonal.plot(color='green', ax=ax1, title='Seasonality')
     plt.legend('')
-    #plt.title('Sazonality')
+    #plt.title('Seasonality')
     #st.pyplot()
 
     decomposition.trend.plot(color='green', ax=ax2, title='Trending')

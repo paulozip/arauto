@@ -26,7 +26,6 @@ def file_uploader(selected_file_format):
     return df
 
 
-@st.cache(show_spinner=False)
 def _csv_uploader(uploaded_file):
     if uploaded_file is not None:
         file_contents = uploaded_file.getvalue()
@@ -41,7 +40,6 @@ def _csv_uploader(uploaded_file):
         return df
 
 
-@st.cache(show_spinner=False)
 def _excel_uploader(uploaded_file):
     if uploaded_file is not None:
         try:

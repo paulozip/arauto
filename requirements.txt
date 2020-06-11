@@ -6,5 +6,6 @@ plotly==4.1.0
 requests==2.21.0
 scikit-learn==0.20.3
 statsmodels==0.10.1
-streamlit==0.47.4
+streamlit==0.58.0
+xlrd==1.2.0
 tqdm==4.36.1

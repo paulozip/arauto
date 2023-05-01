@@ -1,4 +1,4 @@
-Flask==1.0.2
+Flask==2.3.2
 matplotlib==3.0.3
 numpy==1.16.2
 pandas==0.24.2
